@@ -1,0 +1,285 @@
+@font-face {
+    font-family: 'ZHSJ Serif';
+    src: url('../assets/fonts/ZHSJ-basic.woff2') format('woff2');
+    font-display: swap;
+}
+
+:root {
+    --ink: #2d2a25;
+    --paper: #f7f0df;
+    --accent: #7b3f26;
+    --accent-dark: #5f2e1e;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'ZHSJ Serif', serif;
+}
+
+#app {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+}
+
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#ui-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: clamp(3rem, 10vh, 7rem) clamp(1.5rem, 9vw, 9rem) clamp(2rem, 8vh, 6rem);
+}
+
+.title-block {
+    width: 100%;
+    text-shadow: 0 1px 14px rgba(255, 252, 240, 0.75);
+}
+
+.title-block h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 5vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.title-block em {
+    color: var(--accent);
+    font-style: normal;
+}
+
+.eyebrow {
+    margin: 0 0 0.8rem;
+    color: var(--accent);
+    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+    letter-spacing: 0.35em;
+}
+
+/* 菜单容器 */
+#start-menu {
+    pointer-events: auto; /* 恢复按钮点击 */
+    width: min(100%, 14rem);
+    padding: 1rem 0;
+}
+
+/* 按钮样式 */
+button {
+    display: block;
+    width: 100%;
+    margin: 0.8rem 0;
+    padding: 0.85rem 1.2rem;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    color: var(--paper);
+    background-color: var(--accent);
+    font: 600 1.3rem 'ZHSJ Serif', serif;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
+button:focus-visible {
+    outline: 3px solid rgba(123, 63, 38, 0.35);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+#loading-screen {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background-color: #2c2c2c;
+    color: #e1c273;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#loading-screen h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 600;
+}
+
+#loading-screen p {
+    margin: 0;
+}
+
+.loading-track {
+    width: min(70vw, 20rem);
+    height: 0.35rem;
+    margin-top: 1.75rem;
+    overflow: hidden;
+    border: 1px solid rgba(225, 194, 115, 0.55);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+#loading-progress {
+    display: block;
+    width: 0%;
+    height: 100%;
+    background: #e1c273;
+    transition: width 0.25s ease-out;
+}
+
+#loading-percent {
+    min-width: 3rem;
+    margin-top: 0.7rem !important;
+    color: rgba(225, 194, 115, 0.8);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.start-page {
+    min-height: 100vh;
+    overflow: auto;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background:
+        linear-gradient(90deg, rgba(247, 240, 223, 0.28), rgba(247, 240, 223, 0.78)),
+        url('../assets/images/start_bg.png') center / cover no-repeat;
+}
+
+.welcome-panel {
+    width: min(100%, 40rem);
+    padding: clamp(2rem, 7vw, 5rem);
+    border-left: 3px solid var(--accent);
+    background: rgba(247, 240, 223, 0.78);
+    box-shadow: 0 1rem 3rem rgba(74, 49, 32, 0.12);
+}
+
+.start-eyebrow {
+    margin: 0 0 1.5rem;
+    color: var(--accent);
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
+    letter-spacing: 0.28em;
+}
+
+.welcome-panel h1 {
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+}
+
+.welcome-copy {
+    max-width: 29rem;
+    margin: 1.8rem 0 2.5rem;
+    color: #5a4a3b;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 2;
+}
+
+.start-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.start-actions a {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.start-primary {
+    color: var(--paper);
+    background: var(--accent);
+}
+
+.start-secondary {
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.start-actions a:hover {
+    transform: translateY(-2px);
+}
+
+.start-primary:hover {
+    background: var(--accent-dark);
+}
+
+.start-secondary:hover {
+    color: var(--paper);
+    background: var(--accent);
+}
+
+@media (max-width: 600px) {
+    #ui-layer {
+        align-items: center;
+        padding: 3.5rem 1.5rem max(1rem, env(safe-area-inset-bottom));
+        text-align: center;
+    }
+
+    #start-menu {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: min(100%, 14rem);
+        padding: 0.5rem 0;
+        transform: translate(-50%, -50%);
+    }
+
+    #start-menu button {
+        margin: 0.6rem 0;
+        padding: 0.85rem 1.2rem;
+        font-size: clamp(1.1rem, 5vw, 1.3rem);
+    }
+
+    .title-block h1 {
+        font-size: clamp(1.65rem, 8vw, 3rem);
+    }
+
+    .start-page {
+        padding: 1rem;
+    }
+
+    .welcome-panel {
+        border-left-width: 2px;
+    }
+
+    .start-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .start-actions a {
+        text-align: center;
+    }
+}
