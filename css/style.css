@@ -114,13 +114,20 @@ button:disabled {
 #loading-screen {
     position: absolute;
     inset: 0;
-    display: none;
+    display: flex;
+    opacity: 0;
     background-color: #2c2c2c;
     color: #e1c273;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 999;
+    pointer-events: none;
+    transition: opacity 0.55s ease;
+}
+
+#loading-screen.is-visible {
+    opacity: 1;
 }
 
 #loading-screen h1 {
@@ -169,12 +176,20 @@ button:disabled {
         url('../assets/images/start_bg.png') center / cover no-repeat;
 }
 
+.start-page.is-loading .welcome-panel {
+    opacity: 0;
+    transform: translateY(0.75rem);
+}
+
 .welcome-panel {
     width: min(100%, 40rem);
     padding: clamp(2rem, 7vw, 5rem);
     border-left: 3px solid var(--accent);
     background: rgba(247, 240, 223, 0.78);
     box-shadow: 0 1rem 3rem rgba(74, 49, 32, 0.12);
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .start-eyebrow {

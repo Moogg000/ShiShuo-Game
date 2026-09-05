@@ -1,38 +1,25 @@
-var loadingProgress = document.getElementById('loading-progress');
-var loadingPercent = document.getElementById('loading-percent');
-var loadingScreen = document.getElementById('loading-screen');
-var loadingTrack = document.querySelector('.loading-track');
 var backgroundReady = false;
 var fontReady = false;
+var readyTimer;
 
-function setLoadingProgress(value) {
-    var progress = Math.max(0, Math.min(100, Math.round(value)));
-
-    loadingProgress.style.width = progress + '%';
-    loadingPercent.textContent = progress + '%';
-    loadingTrack.setAttribute('aria-valuenow', progress);
-}
-
-function updateLoadingState() {
-    var progress = (backgroundReady ? 50 : 0) + (fontReady ? 50 : 0);
-
-    setLoadingProgress(progress);
-
-    if (backgroundReady && fontReady) {
-        loadingScreen.style.display = 'none';
-    } else {
-        loadingScreen.style.display = 'flex';
+function revealStartPage() {
+    if (!backgroundReady || !fontReady) {
+        return;
     }
+
+    window.clearTimeout(readyTimer);
+    document.body.classList.remove('is-loading');
+    document.body.classList.add('is-ready');
 }
 
 function markBackgroundReady() {
     backgroundReady = true;
-    updateLoadingState();
+    revealStartPage();
 }
 
 function markFontReady() {
     fontReady = true;
-    updateLoadingState();
+    revealStartPage();
 }
 
 var background = new Image();
@@ -46,3 +33,9 @@ if (document.fonts && document.fonts.load) {
 } else {
     markFontReady();
 }
+
+readyTimer = window.setTimeout(function() {
+    backgroundReady = true;
+    fontReady = true;
+    revealStartPage();
+}, 2500);

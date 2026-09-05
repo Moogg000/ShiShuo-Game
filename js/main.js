@@ -58,11 +58,11 @@ function updateInitialLoading() {
 
     if (bgReady && fontReady) {
         drawTitleScreen();
-        loadingScreen.style.display = 'none';
+        loadingScreen.classList.remove('is-visible');
         return;
     }
 
-    loadingScreen.style.display = 'flex';
+    loadingScreen.classList.add('is-visible');
 }
 
 function markBackgroundReady() {
@@ -88,27 +88,12 @@ if (document.fonts && document.fonts.load) {
 
 window.addEventListener('resize', drawTitleScreen);
 
-// 按钮逻辑保持不变
+window.requestAnimationFrame(function() {
+    loadingScreen.classList.add('is-visible');
+});
+
 document.getElementById('btn-start').addEventListener('click', function() {
-    var startButton = document.getElementById('btn-start');
-    var progress = 0;
-
-    startButton.disabled = true;
-    document.getElementById('start-menu').style.display = 'none';
-    loadingScreen.style.display = 'flex';
-    loadingScreen.style.opacity = '1';
-    loadingMessage.textContent = '正在进入游戏...';
-    setLoadingProgress(0);
-
-    var startLoadingTimer = window.setInterval(function() {
-        progress += 5;
-        setLoadingProgress(progress);
-
-        if (progress >= 100) {
-            window.clearInterval(startLoadingTimer);
-            window.location.href = 'start.html';
-        }
-    }, 60);
+    window.location.href = 'start.html';
 });
 
 document.getElementById('btn-intro').addEventListener('click', function() {
