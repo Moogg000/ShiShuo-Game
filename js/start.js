@@ -25,7 +25,7 @@ function markFontReady() {
 var background = new Image();
 background.onload = markBackgroundReady;
 background.onerror = markBackgroundReady;
-background.src = 'assets/images/start_bg.png';
+background.src = 'assets/images/bg_banboo.png';
 
 if (document.fonts && document.fonts.load) {
     document.fonts.load('600 1rem "ZHSJ Serif"')

@@ -3,20 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>进入名士世界 · 世说新语</title>
+	<title>世说·风流志 · 研学案卷</title>
 	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="start-page is-loading">
-	<main class="welcome-panel">
-		<p class="start-eyebrow">世说新语 · 名士风云</p>
-		<h1>欢迎来到<br>魏晋时期的文人世界</h1>
-		<p class="welcome-copy">在山水清谈之间，结识风流名士，感受一段属于魏晋的风骨与雅趣。</p>
-		<nav class="start-actions" aria-label="开始游戏导航">
-			<a class="start-primary" href="index.html">开始探索</a>
-			<a class="start-secondary" href="index.html">返回首页</a>
-		</nav>
-	</main>
-	<script src="js/start.js"></script>
+<body class="game-page">
+	<div class="game-shell">
+		<header class="game-header">
+			<a class="brand-mark" href="index.html" aria-label="返回首页"><span>世说</span><small>风流志</small></a>
+			<div class="header-title"><p>研学案卷 / 线路总览</p><h1>从四种风骨，进入《世说新语》</h1></div>
+			<div class="grace-meter"><span>风度</span><strong id="grace-value">12</strong><i>✦</i></div>
+		</header>
+		<main class="route-hub">
+			<div class="hub-intro"><span class="overline">选择一条研学线路</span><h2>四面风骨，各有其声</h2><p>每条线路包含三道文本理解题。读原文、辨语意，再从名士的姿态里找到答案。</p></div>
+			<div class="route-grid">
+				<a class="route-card route-card-literature" href="literature.html"><span>01 / 艺苑</span><h3>品鉴辞章</h3><p>言语 · 文学 · 赏誉</p><i>→</i></a>
+				<a class="route-card route-card-mountain" href="mountain.html"><span>02 / 山林</span><h3>寄情山水</h3><p>栖逸 · 任诞 · 简傲</p><i>→</i></a>
+				<a class="route-card route-card-court" href="court.html"><span>03 / 庙堂</span><h3>辨明方正</h3><p>政事 · 方正 · 规箴</p><i>→</i></a>
+				<a class="route-card route-card-bearing" href="bearing.html"><span>04 / 容止</span><h3>观人风仪</h3><p>容止 · 自新 · 企羡</p><i>→</i></a>
+			</div>
+			<div class="hub-note"><span class="seal">知</span><p>理解一字一句，才是名士风流。<br><small>答题所得风度，可在各线路中向名士请教。</small></p></div>
+		</main>
+		<footer class="game-footer"><span>《世说新语》 · 雅量第二十八</span><span>无战力 / 无排行榜 / 只以理解抵达</span></footer>
+	</div>
 </body>
 </html>
