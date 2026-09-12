@@ -89,7 +89,9 @@ if (document.fonts && document.fonts.load) {
 window.addEventListener('resize', drawTitleScreen);
 
 window.requestAnimationFrame(function() {
-    loadingScreen.classList.add('is-visible');
+    if (!bgReady || !fontReady) {
+        loadingScreen.classList.add('is-visible');
+    }
 });
 
 document.getElementById('btn-start').addEventListener('click', function() {
