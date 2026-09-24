@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'ZHSJ Serif';
-    src: url('../assets/fonts/ZHSJ-basic.woff2') format('woff2');
+    font-family: 'Chill Jinshu Song';
+    src: url('../assets/fonts/ChillJinshuSongRegular.woff') format('woff');
     font-display: swap;
 }
 
@@ -20,7 +20,7 @@ body {
     overflow: hidden;
     background: var(--paper);
     color: var(--ink);
-    font-family: 'ZHSJ Serif', serif;
+    font-family: 'Chill Jinshu Song';
 }
 
 #app {
@@ -90,7 +90,7 @@ button {
     border-radius: 2px;
     color: var(--paper);
     background-color: var(--accent);
-    font: 600 1.3rem 'ZHSJ Serif', serif;
+    font: 600 1.3rem 'Chill Jinshu Song';
     letter-spacing: 0.12em;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
@@ -165,147 +165,13 @@ button:disabled {
     text-align: center;
 }
 
-.start-page {
-    min-height: 100vh;
-    overflow: auto;
-    display: grid;
-    place-items: center;
-    padding: 2rem;
-    background:
-        linear-gradient(90deg, rgba(247, 240, 223, 0.28), rgba(247, 240, 223, 0.78)),
-        url('../assets/images/bg_banboo.png') center / cover no-repeat;
-}
-
-.start-page.is-loading .welcome-panel {
-    opacity: 0;
-    transform: translateY(0.75rem);
-}
-
-.welcome-panel {
-    width: min(100%, 40rem);
-    padding: clamp(2rem, 7vw, 5rem);
-    border-left: 3px solid var(--accent);
-    background: rgba(247, 240, 223, 0.78);
-    box-shadow: 0 1rem 3rem rgba(74, 49, 32, 0.12);
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.start-eyebrow {
-    margin: 0 0 1.5rem;
-    color: var(--accent);
-    font-size: clamp(0.85rem, 2vw, 1.05rem);
-    letter-spacing: 0.28em;
-}
-
-.welcome-panel h1 {
-    margin: 0;
-    color: var(--ink);
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    line-height: 1.35;
-}
-
-.welcome-copy {
-    max-width: 29rem;
-    margin: 1.8rem 0 2.5rem;
-    color: #5a4a3b;
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    line-height: 2;
-}
-
-.start-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-}
-
-.start-actions a {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    font-size: 1.1rem;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    transition: background-color 0.2s, color 0.2s, transform 0.2s;
-}
-
-.start-primary {
-    color: var(--paper);
-    background: var(--accent);
-}
-
-.start-secondary {
-    color: var(--accent);
-    border: 1px solid var(--accent);
-}
-
-.start-actions a:hover {
-    transform: translateY(-2px);
-}
-
-.start-primary:hover {
-    background: var(--accent-dark);
-}
-
-.start-secondary:hover {
-    color: var(--paper);
-    background: var(--accent);
-}
-
-@media (max-width: 600px) {
-    #ui-layer {
-        align-items: center;
-        padding: 3.5rem 1.5rem max(1rem, env(safe-area-inset-bottom));
-        text-align: center;
-    }
-
-    #start-menu {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: min(100%, 14rem);
-        padding: 0.5rem 0;
-        transform: translate(-50%, -50%);
-    }
-
-    #start-menu button {
-        margin: 0.6rem 0;
-        padding: 0.85rem 1.2rem;
-        font-size: clamp(1.1rem, 5vw, 1.3rem);
-    }
-
-    .title-block h1 {
-        font-size: clamp(1.65rem, 8vw, 3rem);
-    }
-
-    .start-page {
-        padding: 1rem;
-    }
-
-    .welcome-panel {
-        border-left-width: 2px;
-    }
-
-    .start-actions {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .start-actions a {
-        text-align: center;
-    }
-}
-
 /* 研学案卷 */
 .game-page {
     min-height: 100vh;
     overflow: auto;
     background: #e8dfce;
     color: #292620;
-    font-family: 'ZHSJ Serif', Georgia, serif;
+    font-family: 'Chill Jinshu Song';
     --game-background: url('../assets/images/bg_banboo.png');
 }
 
@@ -322,7 +188,7 @@ button:disabled {
 .game-header { display: grid; grid-template-columns: 8rem 1fr auto; align-items: center; gap: 2rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(65, 52, 38, 0.25); }
 .brand-mark { display: grid; color: #762f27; text-decoration: none; }
 .brand-mark span { font-size: 1.45rem; letter-spacing: 0.13em; }
-.brand-mark small { margin-top: 0.2rem; color: #675b4d; font: 0.66rem Georgia, serif; letter-spacing: 0.18em; text-transform: uppercase; }
+.brand-mark small { margin-top: 0.2rem; color: #675b4d; font: 0.66rem 'Chill Jinshu Song'; letter-spacing: 0.18em; text-transform: uppercase; }
 .header-title p, .header-title h1, .grace-meter span, .grace-meter strong { margin: 0; }
 .header-title p, .overline, .stage-topline, .rail-heading small, .choice-count, .card-meta, .mentor-role, .mentor-status, .lesson-note > span { color: #896d54; font-size: 0.7rem; letter-spacing: 0.18em; }
 .header-title h1 { margin-top: 0.35rem; font-size: clamp(1.1rem, 2vw, 1.55rem); font-weight: 600; letter-spacing: 0.08em; }
@@ -333,33 +199,26 @@ button:disabled {
 .game-layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr) 17rem; gap: clamp(2rem, 5vw, 5.5rem); padding: 3.3rem 0 2rem; }
 .rail-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.2rem; color: #393128; font-size: 1rem; }
 .route-rail nav { display: grid; gap: 0.35rem; }
-.route-button { position: relative; display: grid; grid-template-columns: 1fr auto; width: 100%; margin: 0; padding: 0.85rem 0.8rem; border: 0; border-left: 2px solid transparent; border-radius: 0; color: #5d5244; background: transparent; font-family: inherit; text-align: left; cursor: pointer; }
-.route-button b { color: inherit; font-size: 1.12rem; font-weight: 500; }
-.route-button span { grid-column: 1 / 2; margin-top: 0.25rem; font-size: 0.68rem; letter-spacing: 0.06em; }
-.route-button em { grid-column: 2; grid-row: 1 / 3; align-self: center; color: #a69783; font: italic 0.75rem Georgia, serif; }
-.route-button:hover, .route-button.is-active { border-left-color: #762f27; color: #762f27; background: rgba(255, 250, 239, 0.48); }
 .rail-note { display: flex; align-items: center; gap: 0.8rem; margin-top: 4rem; color: #796b5b; font-size: 0.78rem; line-height: 1.7; }
 .rail-note p { margin: 0; }
 .seal { display: grid; flex: 0 0 2.3rem; width: 2.3rem; height: 2.3rem; place-items: center; border: 1px solid #9f4639; color: #9f4639; font-size: 1.2rem; }
 .study-stage { min-width: 0; }
 .stage-topline { display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
 .text-card { position: relative; padding: clamp(1.5rem, 4vw, 3rem); background: rgba(252, 248, 237, 0.82); box-shadow: 0 0.7rem 2rem rgba(76, 58, 38, 0.08); }
+.lesson[hidden], .completion-panel[hidden] { display: none; }
 .text-card::before { position: absolute; top: 0; left: 0; width: 4rem; height: 3px; background: #762f27; content: ''; }
 .card-meta { display: flex; justify-content: space-between; }
 .tag { padding: 0.25rem 0.45rem; border: 1px solid #bba995; color: #765f4b; font-size: 0.62rem; letter-spacing: 0.1em; }
 .text-card h2 { margin: 1.7rem 0 1.3rem; color: #302a24; font-size: clamp(1.65rem, 3vw, 2.5rem); font-weight: 500; }
 .source-line { max-width: 38rem; margin: 0; color: #392f28; font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2.1; }
 .translation { max-width: 38rem; margin: 0.9rem 0 0; color: #796b5b; font-size: 0.84rem; line-height: 1.9; }
-.vocab-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin-top: 2rem; color: #967e68; font-size: 0.7rem; }
-.vocab { position: relative; width: auto; margin: 0; padding: 0.25rem 0.55rem; border: 1px solid #c6b8a6; border-radius: 0; color: #6d4b3c; background: transparent; font: 0.78rem inherit; letter-spacing: 0; }
-.vocab:hover::after { position: absolute; bottom: 120%; left: 50%; width: max-content; padding: 0.3rem 0.5rem; color: #f9f2df; background: #382f28; content: attr(data-tip); transform: translateX(-50%); }
 .choice-section { padding-top: 3rem; }
 .choice-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
 .choice-heading h3 { max-width: 34rem; margin: 0.55rem 0 0; font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 500; line-height: 1.6; }
 .choice-count { white-space: nowrap; }
 .choice-list { display: grid; gap: 0.55rem; margin-top: 1.4rem; }
 .choice { display: grid; grid-template-columns: 2rem 1fr auto; align-items: center; width: 100%; margin: 0; padding: 1rem 1.1rem; border: 1px solid rgba(104, 82, 63, 0.25); border-radius: 0; color: #53483c; background: rgba(255, 252, 244, 0.55); font-family: inherit; text-align: left; cursor: pointer; }
-.choice span { color: #9d8061; font: italic 1rem Georgia, serif; }
+.choice span { color: #9d8061; font: italic 1rem 'Chill Jinshu Song'; }
 .choice strong { font-size: 0.92rem; font-weight: 400; line-height: 1.6; }
 .choice i { color: #aa927b; font-style: normal; opacity: 0; transition: opacity 0.2s; }
 .choice:hover { border-color: #8f4b3f; background: rgba(255, 252, 244, 0.9); }
@@ -372,9 +231,13 @@ button:disabled {
 .feedback p { margin: 0.3rem 0; }
 .feedback span { color: #8b6d48; font-size: 0.72rem; letter-spacing: 0.1em; }
 .feedback.is-success { border-left-color: #6e8461; }.feedback.is-success strong { color: #557049; }.feedback.is-revise { border-left-color: #a45a4a; }
-.continue-button, .mentor-button { width: auto; margin: 1rem 0 0; padding: 0.7rem 1rem; border: 1px solid #762f27; border-radius: 0; color: #762f27; background: transparent; font: 0.85rem inherit; letter-spacing: 0.08em; cursor: pointer; }
-.continue-button:hover, .mentor-button:hover { color: #f9f2df; background: #762f27; }
-.continue-button span { margin-left: 1rem; }
+.completion-panel { min-height: 25rem; padding: clamp(2rem, 6vw, 4rem); background: rgba(252, 248, 237, 0.82); box-shadow: 0 0.7rem 2rem rgba(76, 58, 38, 0.08); }
+.completion-panel h2 { margin: 1rem 0; color: #302a24; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 500; }
+.completion-score { color: #695a4b; font-size: 1rem; line-height: 1.9; }
+.home-link { display: inline-block; margin-top: 1.5rem; padding: 0.7rem 1rem; border: 1px solid #762f27; color: #762f27; text-decoration: none; letter-spacing: 0.08em; }
+.home-link:hover { color: #f9f2df; background: #762f27; }
+.mentor-button { width: auto; margin: 1rem 0 0; padding: 0.7rem 1rem; border: 1px solid #762f27; border-radius: 0; color: #762f27; background: transparent; font-family: inherit; font-size: 0.85rem; letter-spacing: 0.08em; cursor: pointer; }
+.mentor-button:hover { color: #f9f2df; background: #762f27; }
 .mentor-panel { align-self: start; padding: 1.4rem 0 0 1.5rem; border-left: 1px solid rgba(65, 52, 38, 0.25); }
 .mentor-header { display: flex; justify-content: space-between; align-items: center; }.mentor-status { color: #6a825c; font-size: 0.6rem; }
 .mentor-portrait { position: relative; display: grid; width: 5rem; height: 5rem; margin: 2rem 0 1rem; place-items: center; border: 1px solid #9b8973; border-radius: 50%; color: #762f27; background: rgba(248, 240, 219, 0.7); font-size: 2rem; }.mentor-portrait::before { position: absolute; inset: 0.35rem; border: 1px dashed #b7a38a; border-radius: 50%; content: ''; }.mentor-portrait i { position: absolute; right: -0.3rem; bottom: -0.25rem; color: #bd8f3d; font-size: 0.9rem; font-style: normal; }
@@ -385,18 +248,18 @@ button:disabled {
 .hub-intro { max-width: 38rem; }
 .hub-intro h2 { margin: 0.7rem 0 1rem; color: #302a24; font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 500; line-height: 1.3; }
 .hub-intro p { max-width: 31rem; margin: 0; color: #786958; font-size: 0.95rem; line-height: 1.9; }
-.route-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3.5rem; }
+.route-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 3.5rem; }
 .route-card { position: relative; display: flex; min-height: 15rem; flex-direction: column; justify-content: flex-end; padding: 1.4rem; overflow: hidden; border: 1px solid rgba(104, 82, 63, 0.25); color: #f8f0de; text-decoration: none; background: #786450 center / cover; box-shadow: 0 0.8rem 1.5rem rgba(76, 58, 38, 0.1); transition: transform 0.25s, box-shadow 0.25s; }
 .route-card::before { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(38, 28, 20, 0.06), rgba(38, 28, 20, 0.78)); content: ''; }
 .route-card > * { position: relative; z-index: 1; }
 .route-card:hover { transform: translateY(-0.4rem); box-shadow: 0 1.2rem 2rem rgba(76, 58, 38, 0.2); }
-.route-card span { font-size: 0.68rem; letter-spacing: 0.14em; }.route-card h3 { margin: 0.5rem 0 0.2rem; font-size: 1.65rem; font-weight: 500; }.route-card p { margin: 0; font-size: 0.72rem; opacity: 0.84; }.route-card i { position: absolute; right: 1.4rem; bottom: 1.2rem; font-size: 1.2rem; font-style: normal; }.route-card-literature { background-image: url('../assets/images/bg_ju.png'); }.route-card-mountain { background-image: url('../assets/images/bg_lan.png'); }.route-card-court { background-image: url('../assets/images/bg_banboo.png'); }.route-card-bearing { background-image: url('../assets/images/bg_lian.png'); }
+.route-card span { font-size: 0.68rem; letter-spacing: 0.14em; }.route-card h3 { margin: 0.5rem 0 0.2rem; font-size: 1.65rem; font-weight: 500; }.route-card p { margin: 0; font-size: 0.72rem; opacity: 0.84; }.route-card i { position: absolute; right: 1.4rem; bottom: 1.2rem; font-size: 1.2rem; font-style: normal; }.route-card-mountain { background-image: url('../assets/images/bg_lan.png'); }.route-card-court { background-image: url('../assets/images/bg_banboo.png'); }
 .hub-note { display: flex; align-items: center; gap: 0.9rem; margin-top: 3rem; color: #796b5b; font-size: 0.82rem; line-height: 1.7; }.hub-note p { margin: 0; }.hub-note small { color: #9a8976; font-size: 0.7rem; }
-.lesson-nav { display: grid; gap: 0.35rem; }.lesson-tab { display: flex; justify-content: space-between; width: 100%; margin: 0; padding: 0.8rem; border: 0; border-left: 2px solid transparent; border-radius: 0; color: #5d5244; background: transparent; font: 0.92rem inherit; text-align: left; cursor: pointer; }.lesson-tab em { color: #a69783; font: italic 0.75rem Georgia, serif; }.lesson-tab:hover, .lesson-tab.is-active { border-left-color: #762f27; color: #762f27; background: rgba(255, 250, 239, 0.48); }
+.lesson-nav { display: grid; gap: 0.35rem; }.lesson-tab { display: flex; justify-content: space-between; width: 100%; margin: 0; padding: 0.8rem; border: 0; border-left: 2px solid transparent; border-radius: 0; color: #5d5244; background: transparent; font-family: inherit; font-size: 0.92rem; text-align: left; cursor: pointer; }.lesson-tab em { color: #a69783; font: italic 0.75rem 'Chill Jinshu Song'; }.lesson-tab:hover, .lesson-tab.is-active { border-left-color: #762f27; color: #762f27; background: rgba(255, 250, 239, 0.48); }
 .mentor-card { padding-bottom: 1.3rem; margin-bottom: 1.3rem; border-bottom: 1px solid rgba(65, 52, 38, 0.18); }.mentor-card .mentor-portrait { margin-top: 1rem; }.mentor-portrait-court { border-color: #9f6a55; color: #8d4d37; }.mentor-card .mentor-copy { margin-bottom: 0.8rem; }.mentor-card .mentor-button { margin-top: 0; }
 
 @media (max-width: 950px) { .route-grid { grid-template-columns: repeat(2, 1fr); }.route-hub { padding-top: 3rem; } }
-@media (max-width: 620px) { .route-grid { grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-top: 2.3rem; }.route-card { min-height: 12rem; padding: 1rem; }.route-card h3 { font-size: 1.2rem; }.route-card i { right: 1rem; bottom: 0.9rem; }.hub-note { margin-top: 2rem; }.route-page .game-layout { display: flex; }.route-page .mentor-panel { display: block; }.route-page .mentor-card { min-height: 0; } }
+@media (max-width: 620px) { .title-block h1 { white-space: normal; overflow-wrap: anywhere; }.route-grid { grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-top: 2.3rem; }.route-card { min-height: 12rem; padding: 1rem; }.route-card h3 { font-size: 1.2rem; }.route-card i { right: 1rem; bottom: 0.9rem; }.hub-note { margin-top: 2rem; }.route-page .game-layout { display: flex; }.route-page .mentor-panel { display: block; }.route-page .mentor-card { min-height: 0; } }
 
 @media (max-width: 950px) { .game-layout { grid-template-columns: 10rem minmax(0, 1fr); gap: 2rem; }.mentor-panel { grid-column: 2; display: grid; grid-template-columns: 5rem 1fr; column-gap: 1rem; padding: 1.5rem 0 0; border-top: 1px solid rgba(65, 52, 38, 0.25); border-left: 0; }.mentor-header, .mentor-copy, .mentor-button, .lesson-note { grid-column: 1 / -1; }.mentor-portrait { margin: 1rem 0; }.mentor-panel h2 { align-self: end; }.mentor-role { align-self: start; }.mentor-panel blockquote { align-self: end; } }
-@media (max-width: 620px) { .game-shell { padding: 1rem 1rem 1.2rem; }.game-header { grid-template-columns: 1fr auto; gap: 1rem; }.header-title { grid-column: 1 / -1; grid-row: 2; }.header-title h1 { font-size: 1.15rem; }.game-layout { display: flex; flex-direction: column; gap: 1.8rem; padding-top: 1.8rem; }.route-rail nav { display: flex; gap: 0.3rem; overflow-x: auto; padding-bottom: 0.35rem; }.route-button { min-width: 7.1rem; padding: 0.6rem; border-top: 2px solid transparent; border-left: 0; }.route-button.is-active, .route-button:hover { border-top-color: #762f27; border-left-color: transparent; }.route-button span { font-size: 0.6rem; white-space: nowrap; }.rail-note { display: none; }.text-card { padding: 1.3rem; }.choice-section { padding-top: 1.8rem; }.choice-heading { display: block; }.choice-count { display: block; margin-top: 0.8rem; }.choice { grid-template-columns: 1.5rem 1fr; padding: 0.8rem; }.choice i { display: none; }.mentor-panel { display: block; padding-top: 1.4rem; border-top: 1px solid rgba(65, 52, 38, 0.25); }.mentor-portrait { margin-top: 1rem; }.game-footer { display: block; line-height: 1.8; }.game-footer span { display: block; } }
+@media (max-width: 620px) { .game-shell { padding: 1rem 1rem 1.2rem; }.game-header { grid-template-columns: 1fr auto; gap: 1rem; }.header-title { grid-column: 1 / -1; grid-row: 2; }.header-title h1 { font-size: 1.15rem; }.game-layout { display: flex; flex-direction: column; gap: 1.8rem; padding-top: 1.8rem; }.route-rail nav { display: flex; gap: 0.3rem; overflow-x: auto; padding-bottom: 0.35rem; }.lesson-tab { min-width: 7.1rem; padding: 0.6rem; border-top: 2px solid transparent; border-left: 0; }.lesson-tab.is-active, .lesson-tab:hover { border-top-color: #762f27; border-left-color: transparent; }.lesson-tab em { font-size: 0.6rem; white-space: nowrap; }.rail-note { display: none; }.text-card { padding: 1.3rem; }.choice-section { padding-top: 1.8rem; }.choice-heading { display: block; }.choice-count { display: block; margin-top: 0.8rem; }.choice { grid-template-columns: 1.5rem 1fr; padding: 0.8rem; }.choice i { display: none; }.mentor-panel { display: block; padding-top: 1.4rem; border-top: 1px solid rgba(65, 52, 38, 0.25); }.mentor-portrait { margin-top: 1rem; }.game-footer { display: block; line-height: 1.8; }.game-footer span { display: block; } }

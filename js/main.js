@@ -11,6 +11,7 @@ var fontReady = false;
 var bg = new Image();
 
 function drawTitleScreen() {
+    if (!ctx) return;
     var viewportWidth = window.innerWidth;
     var viewportHeight = window.innerHeight;
     var imageRatio = bg.naturalWidth / bg.naturalHeight;
@@ -80,7 +81,7 @@ bg.onerror = markBackgroundReady;
 bg.src = 'assets/images/bg.png';
 
 if (document.fonts && document.fonts.load) {
-    document.fonts.load('600 1rem "ZHSJ Serif"')
+    document.fonts.load('600 1rem "Chill Jinshu Song"')
         .then(markFontReady, markFontReady);
 } else {
     markFontReady();

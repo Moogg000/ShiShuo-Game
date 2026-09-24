@@ -1,1 +1,111 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>山林·隐逸 · 世说风流志</title><link rel="stylesheet" href="css/style.css"></head><body class="game-page route-page route-mountain"><div class="game-shell"><div id="route-app"></div></div><script src="js/route.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>隐逸 · 世说风流志</title>
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="game-page route-page route-mountain">
+	<div class="game-shell">
+		<header class="game-header">
+			<a class="brand-mark" href="start.html" aria-label="返回线路总览"><span>世说</span><small>风流志</small></a>
+			<div class="header-title">
+				<p>研学线路 / 隐逸</p>
+				<h1>在山水与任诞之间，辨认自我</h1>
+			</div>
+			<div class="grace-meter">
+				<span>风度</span>
+				<strong id="grace-value" aria-live="polite"></strong>
+				<i>✦</i>
+			</div>
+		</header>
+		<main class="game-layout" data-route="mountain">
+			<aside class="route-rail">
+				<div class="rail-heading"><span>本卷三题</span><small>03 LESSONS</small></div>
+				<nav class="lesson-nav" aria-label="题目导航">
+					<button class="lesson-tab is-active" data-index="0">第一题<em>01</em></button>
+					<button class="lesson-tab" data-index="1">第二题<em>02</em></button>
+					<button class="lesson-tab" data-index="2">第三题<em>03</em></button>
+				</nav>
+				<div class="rail-note"><span class="seal">知</span><p>读原文，<br>辨其意。</p></div>
+			</aside>
+			<section class="study-stage">
+				<div class="stage-topline"><span>隐逸</span><span id="chapter-progress">研读 01 / 03</span></div>
+				<div class="lesson-list">
+					<article class="lesson text-card is-active" data-question-id="mountain-q1">
+						<div class="card-meta"><span>今日精读</span><span class="tag">原文</span></div>
+						<h2>刘伶病酒</h2>
+						<p class="source-line">刘伶恒纵酒放达，或脱衣裸形在屋中。</p>
+						<p class="translation">刘伶常常纵情饮酒、放任旷达，有时在屋中脱衣裸身。</p>
+						<section class="choice-section" aria-live="polite">
+							<div class="choice-heading"><div><span class="overline">情境抉择</span><h3>“放达”应当如何放回历史语境理解？</h3></div><span class="choice-count">选择你的理解</span></div>
+							<div class="choice-list">
+								<button class="choice" data-choice-index="0"><span>A</span><strong>就是鼓励后人随意饮酒。</strong><i>→</i></button>
+								<button class="choice" data-choice-index="1"><span>B</span><strong>是人物对世俗礼法边界的独特回应。</strong><i>→</i></button>
+								<button class="choice" data-choice-index="2"><span>C</span><strong>说明刘伶完全不关心世事。</strong><i>→</i></button>
+							</div>
+							<div class="feedback" hidden></div>
+						</section>
+					</article>
+					<article class="lesson text-card" data-question-id="mountain-q2" hidden>
+						<div class="card-meta"><span>今日精读</span><span class="tag">原文</span></div>
+						<h2>雪夜访戴</h2>
+						<p class="source-line">即便门不通，亦欲乘兴而去。</p>
+						<p class="translation">即使知道门路不通，也还是想趁着兴致乘船前往。</p>
+						<section class="choice-section" aria-live="polite">
+							<div class="choice-heading"><div><span class="overline">情境抉择</span><h3>“乘兴”在这里最接近什么？</h3></div><span class="choice-count">选择你的理解</span></div>
+							<div class="choice-list">
+								<button class="choice" data-choice-index="0"><span>A</span><strong>一时冲动，不计后果。</strong><i>→</i></button>
+								<button class="choice" data-choice-index="1"><span>B</span><strong>由景物和情感激发的雅兴。</strong><i>→</i></button>
+								<button class="choice" data-choice-index="2"><span>C</span><strong>为了炫耀自己的洒脱。</strong><i>→</i></button>
+							</div>
+							<div class="feedback" hidden></div>
+						</section>
+					</article>
+					<article class="lesson text-card" data-question-id="mountain-q3" hidden>
+						<div class="card-meta"><span>今日精读</span><span class="tag">原文</span></div>
+						<h2>支公好鹤</h2>
+						<p class="source-line">支公好鹤，住剡东，畜一群鹤。</p>
+						<p class="translation">支遁喜爱鹤，住在剡县东边，养了一群鹤。</p>
+						<section class="choice-section" aria-live="polite">
+							<div class="choice-heading"><div><span class="overline">情境抉择</span><h3>“好鹤”在名士故事中还寄托了什么？</h3></div><span class="choice-count">选择你的理解</span></div>
+							<div class="choice-list">
+								<button class="choice" data-choice-index="0"><span>A</span><strong>只说明他喜欢饲养动物。</strong><i>→</i></button>
+								<button class="choice" data-choice-index="1"><span>B</span><strong>借清远之物寄托对高洁、自由品格的欣赏。</strong><i>→</i></button>
+								<button class="choice" data-choice-index="2"><span>C</span><strong>说明鹤是当时最贵重的宠物。</strong><i>→</i></button>
+							</div>
+							<div class="feedback" hidden></div>
+						</section>
+					</article>
+				</div>
+				<section class="completion-panel" hidden>
+					<span class="overline">本卷完成</span>
+					<h2>你的研读结果</h2>
+					<p class="completion-score"></p>
+					<a class="home-link" href="index.html">返回首页</a>
+				</section>
+			</section>
+			<aside class="mentor-panel">
+				<div class="mentor-header"><span class="overline">名士请教</span><span class="mentor-status">每次请教 - 3 风度</span></div>
+				<div class="mentor-card">
+					<div class="mentor-portrait"><span>谢</span><i>✦</i></div>
+					<h2>谢道韫</h2><p class="mentor-role">文学 · 雅量</p>
+					<p class="mentor-copy">从比喻、风神与女性书写的角度，帮你读懂字句。</p>
+					<button class="mentor-button" data-mentor="谢道韫">请教她 <span>- 3</span></button>
+				</div>
+				<div class="mentor-card">
+					<div class="mentor-portrait mentor-portrait-court"><span>王</span><i>✦</i></div>
+					<h2>王羲之</h2><p class="mentor-role">风仪 · 自然</p>
+					<p class="mentor-copy">从自然真率的姿态出发，提醒你回到人物的行动细节。</p>
+					<button class="mentor-button" data-mentor="王羲之">请教他 <span>- 3</span></button>
+				</div>
+				<div class="lesson-note"><span>名士札记</span><p>先读原文，再让选择回答你的理解。</p></div>
+			</aside>
+		</main>
+	</div>
+	<script src="js/state.js"></script>
+	<script src="js/route.js"></script>
+</body>
+</html>
