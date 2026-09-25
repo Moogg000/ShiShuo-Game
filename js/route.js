@@ -134,6 +134,8 @@
     function renderResult(index) {
         var lesson = lessons[index];
         var feedback = lesson.querySelector('.feedback');
+        var translation = lesson.querySelector('.translation');
+        var continueButton = lesson.querySelector('.continue-button');
         var choices = Array.from(lesson.querySelectorAll('.choice'));
         var result = results[index];
         var answer = answerData[routeKey][lesson.dataset.questionId].answer;
@@ -144,15 +146,19 @@
             if (result !== null && choiceIndex === result.selected && choiceIndex !== answer) choice.classList.add('is-wrong');
         });
         if (result === null) {
+            translation.hidden = true;
             feedback.hidden = true;
             feedback.innerHTML = '';
+            continueButton.hidden = true;
             return;
         }
+        translation.hidden = false;
         feedback.className = result.correct ? 'feedback is-success' : 'feedback is-revise';
         feedback.innerHTML = result.correct
             ? '<strong>理解得其正。</strong><p>' + answerData[routeKey][lesson.dataset.questionId].explain + '</p><span>风度 + 6</span>'
             : '<strong>进入复习模式。</strong><p>' + answerData[routeKey][lesson.dataset.questionId].explain + '</p><span>请对照原文再读一遍</span>';
         feedback.hidden = false;
+        continueButton.hidden = index >= lessonCount - 1;
     }
 
     function chooseAnswer(event) {
@@ -213,6 +219,9 @@
     setBackground();
     tabs.forEach(function (tab) { tab.addEventListener('click', function () { showLesson(Number(tab.dataset.index)); }); });
     document.querySelectorAll('.choice').forEach(function (choice) { choice.addEventListener('click', chooseAnswer); });
+    document.querySelectorAll('.continue-button').forEach(function (button) {
+        button.addEventListener('click', function () { showLesson(currentIndex + 1); });
+    });
     document.querySelectorAll('.mentor-button').forEach(function (button) { button.addEventListener('click', askMentor); });
     completionPanel.hidden = true;
     window.ShiShuoState.refresh();
