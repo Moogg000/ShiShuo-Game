@@ -1,0 +1,6 @@
+/* 页面层：研学线路页（mountain.html / court.html）专属样式 */
+@media (max-width: 620px) {
+    .route-page .game-layout { display: flex; }
+    .route-page .mentor-panel { display: block; }
+    .route-page .mentor-card { min-height: 0; }
+}

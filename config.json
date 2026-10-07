@@ -1,0 +1,17 @@
+{
+  "grace": {
+    "initial": 12,
+    "correctAnswerBonus": 6,
+    "adviceCost": 3
+  },
+  "backgrounds": {
+    "title": "assets/images/bg.png",
+    "pages": [
+      "bg_banboo.png",
+      "bg_ju.png",
+      "bg_lan.png",
+      "bg_lian.png",
+      "bg_mei.png"
+    ]
+  }
+}

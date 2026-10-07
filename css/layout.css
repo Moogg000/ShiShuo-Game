@@ -1,0 +1,67 @@
+/* 布局层：页面骨架、栅格与结构样式 */
+
+/* 首页画布与界面层 */
+#app {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+}
+
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#ui-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: clamp(3rem, 10vh, 7rem) clamp(1.5rem, 9vw, 9rem) clamp(2rem, 8vh, 6rem);
+}
+
+/* 游戏页面骨架 */
+.game-page {
+    min-height: 100vh;
+    overflow: auto;
+    background: #e8dfce;
+    color: #292620;
+    font-family: 'Chill Jinshu Song';
+    --game-background: url('../assets/images/bg_banboo.png');
+}
+
+.game-page::before {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(115deg, rgba(255, 252, 242, 0.7), rgba(213, 196, 168, 0.35)), var(--game-background) center / cover;
+    content: '';
+    opacity: 0.36;
+}
+
+.game-shell { width: min(100%, 1500px); min-height: 100vh; margin: auto; padding: 2rem clamp(1.2rem, 4vw, 4.5rem) 1.2rem; }
+.game-header { display: grid; grid-template-columns: 8rem 1fr auto; align-items: center; gap: 2rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(65, 52, 38, 0.25); }
+.header-title p, .header-title h1, .grace-meter span, .grace-meter strong { margin: 0; }
+.header-title h1 { margin-top: 0.35rem; font-size: clamp(1.1rem, 2vw, 1.55rem); font-weight: 600; letter-spacing: 0.08em; }
+.grace-meter { display: flex; align-items: baseline; gap: 0.65rem; padding: 0.5rem 0.1rem 0.5rem 1rem; border-left: 1px solid rgba(65, 52, 38, 0.25); }
+.grace-meter span { letter-spacing: 0.2em; }
+.grace-meter strong { color: #762f27; font-size: 2.1rem; font-weight: 500; }
+.grace-meter i { color: #bd8f3d; font-style: normal; }
+.game-layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr) 17rem; gap: clamp(2rem, 5vw, 5.5rem); padding: 3.3rem 0 2rem; }
+.rail-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.2rem; color: #393128; font-size: 1rem; }
+.route-rail nav { display: grid; gap: 0.35rem; }
+.rail-note { display: flex; align-items: center; gap: 0.8rem; margin-top: 4rem; color: #796b5b; font-size: 0.78rem; line-height: 1.7; }
+.rail-note p { margin: 0; }
+.study-stage { min-width: 0; }
+.stage-topline { display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
+.mentor-panel { align-self: start; padding: 1.4rem 0 0 1.5rem; border-left: 1px solid rgba(65, 52, 38, 0.25); }
+.game-footer { display: flex; justify-content: space-between; padding-top: 1rem; border-top: 1px solid rgba(65, 52, 38, 0.18); color: #9a8976; font-size: 0.66rem; letter-spacing: 0.08em; }
+
+/* 响应式布局 */
+@media (max-width: 950px) { .game-layout { grid-template-columns: 10rem minmax(0, 1fr); gap: 2rem; } .mentor-panel { grid-column: 2; display: grid; grid-template-columns: 5rem 1fr; column-gap: 1rem; padding: 1.5rem 0 0; border-top: 1px solid rgba(65, 52, 38, 0.25); border-left: 0; } }
+@media (max-width: 620px) { .game-shell { padding: 1rem 1rem 1.2rem; } .game-header { grid-template-columns: 1fr auto; gap: 1rem; } .header-title { grid-column: 1 / -1; grid-row: 2; } .header-title h1 { font-size: 1.15rem; } .game-layout { display: flex; flex-direction: column; gap: 1.8rem; padding-top: 1.8rem; } .route-rail nav { display: flex; gap: 0.3rem; overflow-x: auto; padding-bottom: 0.35rem; } .rail-note { display: none; } .mentor-panel { display: block; padding-top: 1.4rem; border-top: 1px solid rgba(65, 52, 38, 0.25); } .game-footer { display: block; line-height: 1.8; } .game-footer span { display: block; } }

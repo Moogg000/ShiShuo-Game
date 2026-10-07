@@ -1,0 +1,94 @@
+/* 组件层：跨页面复用的界面组件 */
+
+/* 共享小字样式 */
+.header-title p, .overline, .stage-topline, .rail-heading small, .choice-count, .card-meta, .mentor-role, .mentor-status, .lesson-note > span { color: #896d54; font-size: 0.7rem; letter-spacing: 0.18em; }
+
+/* 顶部品牌 */
+.brand-mark { display: grid; color: #762f27; text-decoration: none; }
+.brand-mark span { font-size: 1.45rem; letter-spacing: 0.13em; }
+.brand-mark small { margin-top: 0.2rem; color: #675b4d; font: 0.66rem 'Chill Jinshu Song'; letter-spacing: 0.18em; text-transform: uppercase; }
+
+/* 印章 */
+.seal { display: grid; flex: 0 0 2.3rem; width: 2.3rem; height: 2.3rem; place-items: center; border: 1px solid #9f4639; color: #9f4639; font-size: 1.2rem; }
+
+/* 文本卡片与原文 */
+.text-card { position: relative; padding: clamp(1.5rem, 4vw, 3rem); background: rgba(252, 248, 237, 0.82); box-shadow: 0 0.7rem 2rem rgba(76, 58, 38, 0.08); }
+.lesson[hidden], .completion-panel[hidden] { display: none; }
+.text-card::before { position: absolute; top: 0; left: 0; width: 4rem; height: 3px; background: #762f27; content: ''; }
+.card-meta { display: flex; justify-content: space-between; }
+.tag { padding: 0.25rem 0.45rem; border: 1px solid #bba995; color: #765f4b; font-size: 0.62rem; letter-spacing: 0.1em; }
+.text-card h2 { margin: 1.7rem 0 1.3rem; color: #302a24; font-size: clamp(1.65rem, 3vw, 2.5rem); font-weight: 500; }
+.source-line { max-width: 38rem; margin: 0; color: #392f28; font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 2.1; }
+.translation { max-width: 38rem; margin: 0.9rem 0 0; color: #796b5b; font-size: 0.84rem; line-height: 1.9; }
+
+/* 情境抉择 */
+.choice-section { padding-top: 3rem; }
+.choice-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
+.choice-heading h3 { max-width: 34rem; margin: 0.55rem 0 0; font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 500; line-height: 1.6; }
+.choice-count { white-space: nowrap; }
+.choice-list { display: grid; gap: 0.55rem; margin-top: 1.4rem; }
+.choice { display: grid; grid-template-columns: 2rem 1fr auto; align-items: center; width: 100%; margin: 0; padding: 1rem 1.1rem; border: 1px solid rgba(104, 82, 63, 0.25); border-radius: 0; color: #53483c; background: rgba(255, 252, 244, 0.55); font-family: inherit; text-align: left; cursor: pointer; }
+.choice span { color: #9d8061; font: italic 1rem 'Chill Jinshu Song'; }
+.choice strong { font-size: 0.92rem; font-weight: 400; line-height: 1.6; }
+.choice i { color: #aa927b; font-style: normal; opacity: 0; transition: opacity 0.2s; }
+.choice:hover { border-color: #8f4b3f; background: rgba(255, 252, 244, 0.9); }
+.choice:hover i { opacity: 1; }
+.choice.is-correct { border-color: #6e8461; background: rgba(224, 233, 212, 0.65); }
+.choice.is-wrong { border-color: #a45a4a; background: rgba(244, 222, 210, 0.7); }
+.choice:disabled { cursor: default; }
+
+/* 反馈与继续按钮 */
+.feedback { margin-top: 1rem; padding: 1rem 1.2rem; border-left: 2px solid #806d50; background: rgba(255, 250, 239, 0.7); color: #5c5042; font-size: 0.84rem; line-height: 1.7; }
+.feedback strong { color: #762f27; font-size: 1rem; font-weight: 500; }
+.feedback p { margin: 0.3rem 0; }
+.feedback span { color: #8b6d48; font-size: 0.72rem; letter-spacing: 0.1em; }
+.feedback.is-success { border-left-color: #6e8461; }
+.feedback.is-success strong { color: #557049; }
+.feedback.is-revise { border-left-color: #a45a4a; }
+.continue-button { width: auto; margin: 1rem 0 0; padding: 0.7rem 1rem; border: 1px solid #762f27; border-radius: 0; color: #762f27; background: transparent; font-family: inherit; font-size: 0.85rem; letter-spacing: 0.08em; }
+.continue-button:hover { color: #f9f2df; background: #762f27; }
+.continue-button span { margin-left: 0.5rem; }
+
+/* 完成面板 */
+.completion-panel { min-height: 25rem; padding: clamp(2rem, 6vw, 4rem); background: rgba(252, 248, 237, 0.82); box-shadow: 0 0.7rem 2rem rgba(76, 58, 38, 0.08); }
+.completion-panel h2 { margin: 1rem 0; color: #302a24; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 500; }
+.completion-score { color: #695a4b; font-size: 1rem; line-height: 1.9; }
+.home-link { display: inline-block; margin-top: 1.5rem; padding: 0.7rem 1rem; border: 1px solid #762f27; color: #762f27; text-decoration: none; letter-spacing: 0.08em; }
+.home-link:hover { color: #f9f2df; background: #762f27; }
+
+/* 名士请教 */
+.mentor-button { width: auto; margin: 1rem 0 0; padding: 0.7rem 1rem; border: 1px solid #762f27; border-radius: 0; color: #762f27; background: transparent; font-family: inherit; font-size: 0.85rem; letter-spacing: 0.08em; cursor: pointer; }
+.mentor-button:hover { color: #f9f2df; background: #762f27; }
+.mentor-header { display: flex; justify-content: space-between; align-items: center; }
+.mentor-status { color: #6a825c; font-size: 0.6rem; }
+.mentor-portrait { position: relative; display: grid; width: 5rem; height: 5rem; margin: 2rem 0 1rem; place-items: center; border: 1px solid #9b8973; border-radius: 50%; color: #762f27; background: rgba(248, 240, 219, 0.7); font-size: 2rem; }
+.mentor-portrait::before { position: absolute; inset: 0.35rem; border: 1px dashed #b7a38a; border-radius: 50%; content: ''; }
+.mentor-portrait i { position: absolute; right: -0.3rem; bottom: -0.25rem; color: #bd8f3d; font-size: 0.9rem; font-style: normal; }
+.mentor-panel h2 { margin: 0; font-size: 1.45rem; font-weight: 500; }
+.mentor-role { margin: 0.35rem 0 1.3rem; font-size: 0.66rem; }
+.mentor-panel blockquote { margin: 0; padding-left: 0.8rem; border-left: 2px solid #b78a58; color: #574637; font-size: 0.92rem; line-height: 1.9; }
+.mentor-panel blockquote small { color: #917e6b; font-size: 0.72rem; }
+.mentor-copy { color: #786958; font-size: 0.78rem; line-height: 1.8; }
+.mentor-button { display: flex; justify-content: space-between; gap: 1rem; width: 100%; margin-top: 1.3rem; font-size: 0.78rem; }
+.mentor-button span { color: #a17d5d; font-size: 0.68rem; }
+.mentor-button:hover span { color: #f9f2df; }
+.mentor-button:disabled { border-color: #a69a8a; color: #8c8173; background: transparent; cursor: default; }
+.mentor-button:disabled span { color: #8c8173; }
+.lesson-note { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid rgba(65, 52, 38, 0.2); }
+.lesson-note > span { font-size: 0.65rem; }
+.lesson-note p { margin: 0.7rem 0 0; color: #695a4b; font-size: 0.78rem; line-height: 1.8; }
+
+/* 题目导航 */
+.lesson-nav { display: grid; gap: 0.35rem; }
+.lesson-tab { display: flex; justify-content: space-between; width: 100%; margin: 0; padding: 0.8rem; border: 0; border-left: 2px solid transparent; border-radius: 0; color: #5d5244; background: transparent; font-family: inherit; font-size: 0.92rem; text-align: left; cursor: pointer; }
+.lesson-tab em { color: #a69783; font: italic 0.75rem 'Chill Jinshu Song'; }
+.lesson-tab:hover, .lesson-tab.is-active { border-left-color: #762f27; color: #762f27; background: rgba(255, 250, 239, 0.48); }
+.mentor-card { padding-bottom: 1.3rem; margin-bottom: 1.3rem; border-bottom: 1px solid rgba(65, 52, 38, 0.18); }
+.mentor-card .mentor-portrait { margin-top: 1rem; }
+.mentor-portrait-court { border-color: #9f6a55; color: #8d4d37; }
+.mentor-card .mentor-copy { margin-bottom: 0.8rem; }
+.mentor-card .mentor-button { margin-top: 0; }
+
+/* 响应式（组件部分） */
+@media (max-width: 950px) { .mentor-header, .mentor-copy, .mentor-button, .lesson-note { grid-column: 1 / -1; } .mentor-portrait { margin: 1rem 0; } .mentor-panel h2 { align-self: end; } .mentor-role { align-self: start; } .mentor-panel blockquote { align-self: end; } }
+@media (max-width: 620px) { .lesson-tab { min-width: 7.1rem; padding: 0.6rem; border-top: 2px solid transparent; border-left: 0; } .lesson-tab.is-active, .lesson-tab:hover { border-top-color: #762f27; border-left-color: transparent; } .lesson-tab em { font-size: 0.6rem; white-space: nowrap; } .text-card { padding: 1.3rem; } .choice-section { padding-top: 1.8rem; } .choice-heading { display: block; } .choice-count { display: block; margin-top: 0.8rem; } .choice { grid-template-columns: 1.5rem 1fr; padding: 0.8rem; } .choice i { display: none; } .mentor-portrait { margin-top: 1rem; } }
