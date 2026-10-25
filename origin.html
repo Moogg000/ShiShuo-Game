@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>第一章 · 建康受命 · 世说编书人</title>
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="game-page book-page origin-page">
+	<div class="game-shell">
+		<header class="game-header">
+			<a class="brand-mark" href="index.html" aria-label="返回首页"><span>世说</span><small>编书人</small></a>
+			<div class="header-title">
+				<p>第一章 · 建康</p>
+				<h1>受命编书</h1>
+			</div>
+			<div class="chapter-progress" id="origin-progress">府中问对</div>
+		</header>
+
+		<main class="origin-layout">
+			<section id="resume-panel" class="scene-card" hidden>
+				<span class="place">行囊还在</span>
+				<h2>上次的旅程未完</h2>
+				<p class="scene-text" id="resume-text"></p>
+				<div class="flow-actions" id="resume-actions"></div>
+			</section>
+
+			<section id="origin-flow">
+				<div id="beats"></div>
+				<div class="flow-actions" id="beats-actions" hidden></div>
+
+				<div id="quiz" hidden>
+					<div id="quiz-card" class="scene-card"></div>
+				</div>
+
+				<div id="result" hidden>
+					<div id="result-card" class="scene-card">
+						<span class="place">名籍之上，墨迹未干</span>
+						<h2>你的底色</h2>
+						<p class="scene-text" id="result-lead"></p>
+						<div class="axis-rows" id="axis-rows"></div>
+						<div class="affinity-cards" id="affinity-cards"></div>
+						<p class="scene-text" id="result-sendoff"></p>
+						<div class="name-line">
+							<label for="player-name">书末落款</label>
+							<input id="player-name" maxlength="8" placeholder="无名客">
+						</div>
+						<div class="flow-actions">
+							<button class="continue-button" id="btn-depart">出建康，启程<span>→</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer class="game-footer"><span>《世说》编书人 · 第一章</span><span>书无对错，只有你敢记什么</span></footer>
+	</div>
+	<script src="js/book.js"></script>
+	<script src="js/origin.js"></script>
+</body>
+</html>

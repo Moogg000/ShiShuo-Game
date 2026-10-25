@@ -97,7 +97,7 @@
     });
 
     document.getElementById('btn-start').addEventListener('click', function () {
-        window.location.href = 'start.html';
+        window.location.href = 'origin.html';
     });
 
     document.getElementById('btn-intro').addEventListener('click', function () {

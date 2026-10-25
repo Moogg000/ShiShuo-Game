@@ -1,0 +1,120 @@
+/* 页面层：编书人玩法三页（origin / journey / ending）共用样式 */
+
+/* ── 场景叙述与对话 ─────────────────────────── */
+.beat { margin: 0 0 1.1rem; padding: 1rem 1.3rem; border-left: 2px solid rgba(123, 63, 38, 0.4); background: rgba(252, 248, 237, 0.72); }
+.beat .speaker { display: block; margin-bottom: 0.4rem; color: #896d54; font-size: 0.7rem; letter-spacing: 0.22em; }
+.beat p { margin: 0; color: #3a3129; font-size: 1rem; line-height: 2; }
+.beat.narration { border-left-color: rgba(123, 63, 38, 0.18); }
+.beat.narration .speaker { color: #a09077; }
+
+.scene-card { padding: clamp(1.5rem, 4vw, 2.8rem); background: rgba(252, 248, 237, 0.82); box-shadow: 0 0.7rem 2rem rgba(76, 58, 38, 0.08); }
+.scene-card::before { position: relative; display: block; width: 4rem; height: 3px; margin: -0.5rem 0 1rem; background: #762f27; content: ''; }
+.scene-card .place { color: #896d54; font-size: 0.72rem; letter-spacing: 0.2em; }
+.scene-card h2 { margin: 0.6rem 0 1.1rem; color: #302a24; font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 500; letter-spacing: 0.06em; }
+.scene-card .scene-text { margin: 0; color: #3a3129; font-size: 1.02rem; line-height: 2.1; }
+
+/* 原文与译文（后话阶段展示） */
+.quote-block { margin: 1.4rem 0 0; padding: 1.1rem 1.3rem; border: 1px solid rgba(104, 82, 63, 0.3); background: rgba(255, 250, 239, 0.8); }
+.quote-block .qlabel { color: #a3835f; font-size: 0.66rem; letter-spacing: 0.2em; }
+.quote-block .qtext { margin: 0.5rem 0 0; color: #392f28; font-size: clamp(1.05rem, 1.8vw, 1.25rem); line-height: 2; }
+.quote-block .qtrans { margin: 0.6rem 0 0; color: #796b5b; font-size: 0.84rem; line-height: 1.9; }
+
+/* ── 名士后话 ─────────────────────────── */
+.aftermath-card { margin-top: 1.6rem; padding: 1.3rem 1.5rem; border: 1px solid rgba(123, 63, 38, 0.25); background: rgba(248, 240, 219, 0.85); }
+.aftermath-head { display: flex; align-items: center; gap: 0.9rem; }
+.aftermath-head .portrait { display: grid; width: 3.2rem; height: 3.2rem; flex: 0 0 3.2rem; place-items: center; border: 1px solid #9b8973; border-radius: 50%; color: #762f27; background: rgba(252, 248, 237, 0.7); font-size: 1.35rem; }
+.aftermath-head .portrait::before { position: absolute; width: 2.4rem; height: 2.4rem; border: 1px dashed #b7a38a; border-radius: 50%; content: ''; }
+.aftermath-head .who { position: relative; }
+.aftermath-head h3 { margin: 0; color: #302a24; font-size: 1.25rem; font-weight: 500; }
+.aftermath-head .role { margin-top: 0.15rem; color: #896d54; font-size: 0.66rem; letter-spacing: 0.18em; }
+.aftermath-card .lead { margin: 1rem 0 0.4rem; color: #796b5b; font-size: 0.85rem; line-height: 1.8; }
+.aftermath-card .say { margin: 0; color: #3a3129; font-size: 0.98rem; line-height: 2; }
+.aftermath-card blockquote { margin: 1.1rem 0 0; padding: 0.9rem 1.1rem; border-left: 2px solid #b78a58; background: rgba(255, 250, 239, 0.75); }
+.aftermath-card blockquote p { margin: 0; color: #574637; font-size: 0.95rem; line-height: 1.9; }
+.aftermath-card blockquote small { display: block; margin-top: 0.5rem; color: #917e6b; font-size: 0.72rem; }
+
+/* ── 落笔区 ─────────────────────────── */
+.record-panel { margin-top: 1.8rem; padding-top: 1.6rem; border-top: 1px dashed rgba(104, 82, 63, 0.4); }
+.record-panel .record-prompt { margin: 0 0 1rem; color: #5c5042; font-size: 0.98rem; line-height: 1.9; }
+.mode-list { display: grid; gap: 0.55rem; }
+.mode-option { display: block; width: 100%; margin: 0; padding: 0.95rem 1.1rem; border: 1px solid rgba(104, 82, 63, 0.25); color: #53483c; background: rgba(255, 252, 244, 0.55); font-family: inherit; text-align: left; cursor: pointer; }
+.mode-option strong { display: block; color: #3a3129; font-size: 0.95rem; font-weight: 500; }
+.mode-option small { display: block; margin-top: 0.25rem; color: #8b7a66; font-size: 0.76rem; line-height: 1.7; }
+.mode-option:hover { border-color: #8f4b3f; background: rgba(255, 252, 244, 0.9); }
+.mode-option:disabled { cursor: default; opacity: 0.55; }
+.gate-pick { display: grid; gap: 0.55rem; margin-top: 0.4rem; }
+.gate-option { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; width: 100%; margin: 0; padding: 0.85rem 1.1rem; border: 1px solid rgba(104, 82, 63, 0.25); color: #53483c; background: rgba(255, 252, 244, 0.55); font-family: inherit; text-align: left; cursor: pointer; }
+.gate-option strong { color: #762f27; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.1em; }
+.gate-option small { color: #8b7a66; font-size: 0.76rem; }
+.gate-option:hover { border-color: #8f4b3f; background: rgba(255, 252, 244, 0.9); }
+
+/* ── 侧栏：书稿卷与风声 ─────────────────────────── */
+.book-rail { align-self: start; padding-left: 1.6rem; border-left: 1px solid rgba(65, 52, 38, 0.25); }
+.book-rail .overline { display: block; color: #896d54; font-size: 0.7rem; letter-spacing: 0.2em; }
+.pressure-box { margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid rgba(65, 52, 38, 0.2); }
+.pressure-dots { display: flex; gap: 0.35rem; margin-top: 0.6rem; }
+.pressure-dots i { width: 0.72rem; height: 0.72rem; border: 1px solid #9b8973; background: transparent; }
+.pressure-dots i.on { border-color: #762f27; background: #762f27; }
+.pressure-note { margin: 0.6rem 0 0; color: #917e6b; font-size: 0.7rem; line-height: 1.8; }
+.manuscript { margin-top: 1rem; }
+.ms-item { display: grid; grid-template-columns: 1fr auto; gap: 0.2rem 0.6rem; margin-bottom: 0.7rem; color: #5d5244; font-size: 0.8rem; line-height: 1.6; }
+.ms-item .ms-title { color: #3a3129; }
+.ms-item .ms-gate { color: #762f27; font-size: 0.72rem; letter-spacing: 0.1em; }
+.ms-item .ms-mode { grid-column: 1 / -1; color: #917e6b; font-size: 0.68rem; }
+.ms-item.ms-blank { color: #a08f7a; font-style: italic; }
+.ms-empty { margin: 0.6rem 0 0; color: #a08f7a; font-size: 0.76rem; line-height: 1.8; }
+.affinity-mini { margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid rgba(65, 52, 38, 0.2); color: #5d5244; font-size: 0.78rem; line-height: 1.8; }
+.affinity-mini strong { color: #762f27; }
+
+/* ── 开场气质测试 ─────────────────────────── */
+.origin-layout { max-width: 46rem; margin: 0 auto; padding: 2.5rem 0 3rem; }
+.axis-rows { display: grid; gap: 1.2rem; margin: 1.4rem 0; }
+.axis-row .axis-name { display: flex; justify-content: space-between; color: #3a3129; font-size: 0.92rem; letter-spacing: 0.08em; }
+.axis-row .axis-name span { color: #762f27; }
+.axis-bar { position: relative; height: 0.55rem; margin-top: 0.5rem; background: linear-gradient(90deg, rgba(123, 63, 38, 0.55), rgba(248, 240, 219, 0.9) 48%, rgba(123, 63, 38, 0.55)); }
+.axis-bar i { position: absolute; top: 50%; left: 50%; width: 1.05rem; height: 1.05rem; border: 2px solid #762f27; border-radius: 50%; background: #f7f0df; box-shadow: 0 0 0 3px rgba(247, 240, 223, 0.8); transform: translate(-50%, -50%); transition: left 0.6s ease; }
+.axis-desc { display: flex; justify-content: space-between; margin-top: 0.4rem; color: #917e6b; font-size: 0.68rem; }
+.affinity-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.4rem 0; }
+.affinity-card { padding: 1.1rem 1.2rem; border: 1px solid rgba(104, 82, 63, 0.3); background: rgba(252, 248, 237, 0.85); }
+.affinity-card.far { border-color: rgba(90, 90, 110, 0.3); }
+.affinity-card .rel { color: #896d54; font-size: 0.66rem; letter-spacing: 0.2em; }
+.affinity-card h3 { margin: 0.4rem 0 0.2rem; color: #302a24; font-size: 1.3rem; font-weight: 500; }
+.affinity-card p { margin: 0.3rem 0 0; color: #695a4b; font-size: 0.78rem; line-height: 1.8; }
+.name-line { display: flex; align-items: baseline; gap: 0.8rem; margin: 1.4rem 0 0.4rem; }
+.name-line label { color: #5c5042; font-size: 0.9rem; letter-spacing: 0.1em; }
+.name-line input { width: 9rem; padding: 0.45rem 0.6rem; border: 1px solid rgba(104, 82, 63, 0.4); border-radius: 0; background: rgba(255, 252, 244, 0.8); color: #302a24; font: 1.05rem 'Chill Jinshu Song'; letter-spacing: 0.1em; }
+.name-line input:focus { outline: 2px solid rgba(123, 63, 38, 0.35); }
+
+/* ── 结局页 ─────────────────────────── */
+.ending-layout { max-width: 50rem; margin: 0 auto; padding: 2.5rem 0 3rem; }
+.toc { display: grid; gap: 0.7rem; margin: 1.2rem 0; }
+.toc-row { display: grid; grid-template-columns: 5.5rem 1fr auto; gap: 1rem; align-items: baseline; padding: 0.8rem 1rem; background: rgba(252, 248, 237, 0.75); }
+.toc-row .toc-gate { color: #762f27; font-size: 1.05rem; letter-spacing: 0.15em; }
+.toc-row .toc-items { color: #5d5244; font-size: 0.82rem; line-height: 1.8; }
+.toc-row .toc-count { color: #917e6b; font-size: 0.72rem; }
+.toc-blank { padding: 0.9rem 1rem; border: 1px dashed #a08f7a; color: #a08f7a; font-size: 0.8rem; text-align: center; letter-spacing: 0.3em; }
+.editor-note { margin: 1.8rem 0 0; padding: 1.4rem 1.6rem; border: 1px solid rgba(123, 63, 38, 0.35); background: rgba(248, 240, 219, 0.9); }
+.editor-note h3 { margin: 0 0 0.8rem; color: #762f27; font-size: 1.1rem; letter-spacing: 0.2em; }
+.editor-note p { margin: 0; color: #3a3129; font-size: 1.02rem; line-height: 2.1; }
+.fate-card { margin-top: 1.8rem; padding: 1.6rem 1.8rem; background: rgba(60, 48, 36, 0.92); color: #efe6d2; }
+.fate-card .overline { color: #bfa277; font-size: 0.68rem; letter-spacing: 0.28em; }
+.fate-card h3 { margin: 0.7rem 0 0.5rem; font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 500; letter-spacing: 0.08em; }
+.fate-card p { margin: 0.4rem 0 0; color: #d8cbb2; font-size: 0.92rem; line-height: 2; }
+.ending-actions { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+.ending-actions a, .ending-actions button { width: auto; margin: 0; padding: 0.75rem 1.3rem; border: 1px solid #762f27; color: #762f27; background: transparent; font-family: inherit; font-size: 0.88rem; letter-spacing: 0.1em; text-decoration: none; cursor: pointer; }
+.ending-actions a:hover, .ending-actions button:hover { color: #f9f2df; background: #762f27; }
+
+/* 流程容器与继续按钮 */
+.flow-actions { margin-top: 1.8rem; }
+.flow-actions .continue-button { width: auto; margin: 0; padding: 0.75rem 1.4rem; border: 1px solid #762f27; color: #762f27; background: transparent; font-family: inherit; font-size: 0.88rem; letter-spacing: 0.1em; cursor: pointer; }
+.flow-actions .continue-button:hover { color: #f9f2df; background: #762f27; }
+.flow-actions .continue-button span { margin-left: 0.5rem; }
+
+@media (max-width: 950px) {
+    .book-rail { border-left: 0; border-top: 1px solid rgba(65, 52, 38, 0.25); padding: 1.4rem 0 0; }
+}
+@media (max-width: 620px) {
+    .affinity-cards { grid-template-columns: 1fr; }
+    .toc-row { grid-template-columns: 4.2rem 1fr; }
+    .toc-row .toc-count { grid-column: 1 / -1; }
+}

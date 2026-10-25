@@ -1,81 +1,80 @@
-# 世说新语·名士风云
+# 世说新语 · 编书人
 
-一个以《世说新语》和魏晋名士文化为主题的纯静态网页小游戏。玩家通过阅读原文、译文和语境提示，完成“隐逸”“官场”两条研学线路。
+一个以《世说新语》为底本的纯静态网页游戏。你扮演南朝宋临川王刘义庆的门客，受命编撰一部魏晋轶事集：游历建康—洛阳—山阳—会稽，亲闻九件《世说》轶事，做出**无对错、有立场**的应对，然后落笔——记或不记、记入哪一门。你的书稿由你的取舍而成，而"风声"（政治压力）贯穿全程：有些事，记下是要招祸的。
 
 代码仓库：[github.com/Moogg000/ShiShuo-Game](https://github.com/Moogg000/ShiShuo-Game/)
 
-## 游戏功能
+## 玩法循环
 
-- 首页使用固定的 `assets/images/bg.png` 背景。
-- 线路总览页和具体答题页每次打开随机选择一张非首页背景图。
-- 游戏只保留两条线路：隐逸、官场；每条线路包含三道题。
-- 题目内容（原文、译文、选项、答案、解析、名士建议）统一存放在 `data/routes.json` 中，答题页由 `js/route.js` 读取并动态渲染。
-- 提交答案后才显示当前句子的翻译和题目讲解；完成当前题目后，非最后一题显示“下一题”按钮。
-- 答对一题增加 6 点风度；答错显示解析，但不增加风度。
-- 风度值通过浏览器 `localStorage` 保存，在刷新页面和切换线路后保持一致。
-- 每条线路的答题结果通过浏览器 `localStorage` 保存，刷新后会恢复进度，已完成的题目不会重复奖励风度。
-- 请教名士每次消耗 3 点风度，并在当前页面即时显示针对当前题目的建议。
-- 三道题全部完成后显示答对数量、正确率和“返回首页”链接，不再循环答题。
-- 不设战力、排行榜或抽卡，重点是理解文本。
+每一件事经历四个阶段：**遇事**（情境叙述）→ **应对**（三选一，三种真实存在的解读立场，无对错）→ **后话**（知音或诤友名士引原典回应你的立场）→ **落笔**（记入《德行》《言语》《方正》《雅量》《任诞》《栖逸》其中一门，或不记）。
+
+- **精神坐标**：开场"三试"把玩家放在三条魏晋轴线上（名教↔自然、情↔理、狂↔慎），依坐标匹配知音与诤友名士，游历中持续演变。
+- **风声压力**：违碍条目直书 +2、微词 +1、留白 0。风声决定山阳之后的途中事件，以及书成之日是否被"请删"。
+- **双维度结局**：你编成的书（目录 + 门类厚薄 + 编者按文言小传 + 知音诤友赠言），以及这本书的命运（全本呈上 / 有阙呈上 / 藏之名山）。
 
 ## 页面入口
 
 | 页面 | 说明 |
 | --- | --- |
-| `index.html` | 固定背景的游戏首页 |
-| `start.html` | 随机背景的两条线路总览 |
-| `mountain.html` | 隐逸线路，题目由数据文件动态渲染 |
-| `court.html` | 官场线路，题目由数据文件动态渲染 |
-| `intro.html` | 游戏介绍和代码仓库链接 |
+| `index.html` | 首页（受命编书入口） |
+| `origin.html` | 第一章 · 建康受命：问对、三试、定底色 |
+| `journey.html` | 第二至五章 · 游历与复命（遇事→应对→后话→落笔、风声事件、终章抉择） |
+| `ending.html` | 终章 · 书成：目录、编者按、书的命运 |
+| `intro.html` | 游戏介绍 |
+| `start.html` / `mountain.html` / `court.html` | 旧版研学答题（保留，数据在 `data/routes.json`） |
 
 ## 项目结构
 
 ```text
 ShiShuo-Game/
-├── index.html                 # 游戏首页
-├── start.html                 # 两条线路总览
-├── mountain.html              # 隐逸线路题目
-├── court.html                 # 官场线路题目
+├── index.html                 # 首页
+├── origin.html                # 编书人 · 第一章（气质测试）
+├── journey.html               # 编书人 · 游历主循环
+├── ending.html                # 编书人 · 结局
 ├── intro.html                 # 游戏介绍
-├── config.json                # 全局配置（风度数值、背景图片）
+├── config.json                # 全局配置（旧玩法风度数值、背景图）
 ├── data/
-│   └── routes.json            # 题目数据（原文、译文、选项、答案、解析、名士建议）
+│   ├── axes.json              # 三条精神轴线定义
+│   ├── origin.json            # 开场问对与三试题
+│   ├── sages.json             # 名士库（坐标、小传、言行原文）
+│   ├── gates.json             # 门类表（德行…栖逸）
+│   ├── events.json            # 事件库（九章、复命终章、落笔配置）
+│   ├── pressure.json          # 风声压力配置（阈值、途中事件）
+│   └── routes.json            # 旧版答题数据
 ├── css/
 │   ├── style.css              # 样式入口，按层引入下列文件
-│   ├── base.css               # 基础层：字体、变量、重置、按钮基础
-│   ├── layout.css             # 布局层：页面骨架与栅格
-│   ├── components.css         # 组件层：可复用界面组件
-│   └── pages/                 # 页面层：各页面专属样式
-│       ├── home.css           # 首页（index.html）
-│       ├── start.css          # 线路总览页（start.html）
-│       └── route.css          # 研学线路页（mountain/court.html）
+│   ├── base.css / layout.css / components.css
+│   └── pages/
+│       ├── home.css / start.css / route.css
+│       └── book.css           # 编书人三页样式
 ├── js/
-│   ├── config.js              # 配置加载器（读取 config.json，失败时回退默认值）
-│   ├── main.js                # 首页固定背景、加载和入口逻辑
-│   ├── state.js               # 跨页面共享的风度值
-│   ├── start.js               # 线路总览随机背景
-│   └── route.js               # 题目动态渲染、答案、解析、统计和名士请教逻辑
+│   ├── book.js                # 编书人：书稿存档（localStorage）与数据加载
+│   ├── origin.js              # 第一章逻辑
+│   ├── journey.js             # 游历/落笔/风声/终章逻辑
+│   ├── ending.js              # 结局生成逻辑
+│   └── main.js / start.js / route.js / state.js / config.js   # 首页与旧版玩法
 └── assets/
     ├── fonts/
     │   └── ChillJinshuSongRegular.woff   # Chill Jinshu Song 字体
-    └── images/                 # 首页、线路和网站图标资源
+    └── images/
 ```
 
 ## 预览方式
 
-项目不需要 Node.js、Python、包管理器或其他额外应用，也没有构建步骤。
+项目不需要 Node.js、包管理器或构建步骤，但数据经 `fetch` 加载，必须通过本地 HTTP 服务预览：在 VS Code 中用 Live Preview 等方式打开 `index.html`（或 `python -m http.server`）。直接以 `file://` 打开时浏览器会拦截本地数据请求，页面会提示数据加载失败。
 
-`config.json` 与 `data/routes.json` 通过 `fetch` 加载，需要通过 HTTP 服务预览：请在 VS Code 中使用 Live Preview 等“本地服务器”类预览功能打开 `index.html`，再从首页进入游戏。若直接以 `file://` 方式打开页面，浏览器会拦截本地数据请求，答题页会提示“题目数据加载失败”（此时游戏配置会回退到内置默认值）。
+## 内容维护
+
+- **加一件事**：在 `data/events.json` 的 `events` 里新增条目（含三种立场选择、各自的名士后话与引文），并在对应 `chapters[].events` 里登记 id，页面自动渲染。`censored: true` 的事件会走"直书/微词/留白"三选项并计入风声。
+- **加一位名士**：在 `data/sages.json` 新增条目（三条轴取值 -3..3、小传、言行引文即可），他会自动参与知音/诤友匹配。
+- **调风声数值**：`data/pressure.json`（上限、阈值）与 `data/events.json` 的 `record.pressureLabels`。
+- 旧版答题玩法仍可用：编辑 `data/routes.json`，入口在 `start.html`。
+- 存档 key：`shishuo-book-v1`（新玩法）与 `shishuo-grace` / `shishuo-results-*`（旧玩法）。
+
+## 设计说明
+
+无对错判定是这个游戏的根基：选项是三种学术上各有依据的解读立场，名士后话引的每条原文均注明出处（《世说新语》《晋书》或诗文原篇）。机制尽量从书本身长出来——三十六门类是结局骨架，刘义庆招门客著书以避祸的史实是"风声"主线的出处。
 
 ## 字体
 
-项目使用 `assets/fonts/ChillJinshuSongRegular.woff`，这是 [Chill Jinshu Song](https://github.com/Warren2060/ChillJinshuSong) 字体。若后续增加生僻字，应单独制作或加载对应字体子集，并确认字体授权允许网页分发。
-
-## 维护说明
-
-- 页面文案使用简体中文，文件编码为 UTF-8。
-- 首页背景由 `config.json` 的 `backgrounds.title` 控制；线路总览和答题页共享 `backgrounds.pages` 候选列表，不能把首页背景加入列表。
-- 修改题目时，编辑 `data/routes.json` 中对应线路的条目即可，页面会自动渲染，无需改动 HTML 和 JS；每题的 `answer` 索引必须落在 `choices` 范围内。
-- 修改风度初始值、答对奖励和请教消耗，编辑 `config.json` 的 `grace` 字段。
-- 样式按层拆分：设计变量与重置改 `css/base.css`，骨架栅格改 `css/layout.css`，可复用组件改 `css/components.css`，页面专属样式改 `css/pages/`，各层通过 `css/style.css` 统一引入，页面只需引用 `style.css`。
-- 修改风度逻辑时，应通过 `js/state.js` 操作，避免不同页面出现独立的风度值。
+项目使用 `assets/fonts/ChillJinshuSongRegular.woff`，即 [Chill Jinshu Song](https://github.com/Warren2060/ChillJinshuSong) 字体。若后续增加生僻字，应单独制作或加载对应字体子集，并确认字体授权允许网页分发。
