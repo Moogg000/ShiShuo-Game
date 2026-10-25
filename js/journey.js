@@ -160,6 +160,13 @@
             + '<h2>' + event.title + '</h2>'
             + '<p class="scene-text">' + event.scene + '</p></div>'));
 
+        // 行状原文随场景出示：编书人先读行状，再谈看法
+        flow.appendChild(el('<div class="quote-block">'
+            + '<span class="qlabel">行状原文 · 入书底本</span>'
+            + '<p class="qtext">' + event.source + '</p>'
+            + '<p class="qtrans">' + event.translation + '</p>'
+            + '</div>'));
+
         var choiceSection = el('<div class="choice-section">'
             + '<div class="choice-heading"><div><span class="overline">你的应对</span><h3>' + event.prompt + '</h3></div><span class="choice-count">无对错 · 有立场</span></div>'
             + '<div class="choice-list">'
@@ -200,14 +207,8 @@
             + '</div>');
         sceneCard.parentNode.insertBefore(card, sceneCard.nextSibling);
 
-        var quote = el('<div class="quote-block">'
-            + '<span class="qlabel">行状原文 · 入书底本</span>'
-            + '<p class="qtext">' + event.source + '</p>'
-            + '<p class="qtrans">' + event.translation + '</p>'
-            + '</div>');
-        card.parentNode.insertBefore(quote, card.nextSibling);
-
-        quote.parentNode.insertBefore(buildRecordPanel(event, choiceIndex), quote.nextSibling);
+        var recordPanel = buildRecordPanel(event, choiceIndex);
+        card.parentNode.insertBefore(recordPanel, card.nextSibling);
         card.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
