@@ -96,7 +96,50 @@
         if (bgReady && fontReady) drawTitleScreen();
     });
 
-    document.getElementById('btn-start').addEventListener('click', function () {
+    const SAVE_KEY = 'shishuo-book-v1';
+
+    // 是否玩过：以编书人玩法的存档为准（完成第一章受命后即写入存档）。
+    function hasPlayed() {
+        try {
+            return localStorage.getItem(SAVE_KEY) !== null;
+        } catch (error) {
+            console.warn('localStorage 不可用，跳过新玩家引导：', error);
+            return true;
+        }
+    }
+
+    const guard = document.getElementById('intro-guard');
+    const btnStart = document.getElementById('btn-start');
+
+    function openGuard() {
+        guard.hidden = false;
+        document.getElementById('guard-read').focus();
+    }
+
+    function closeGuard() {
+        guard.hidden = true;
+        btnStart.focus();
+    }
+
+    document.getElementById('guard-read').addEventListener('click', function () {
+        window.location.href = 'intro.html';
+    });
+
+    document.getElementById('guard-skip').addEventListener('click', function () {
+        window.location.href = 'origin.html';
+    });
+
+    document.getElementById('guard-close').addEventListener('click', closeGuard);
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !guard.hidden) closeGuard();
+    });
+
+    btnStart.addEventListener('click', function () {
+        if (!hasPlayed()) {
+            openGuard();
+            return;
+        }
         window.location.href = 'origin.html';
     });
 
