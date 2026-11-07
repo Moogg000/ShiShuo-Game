@@ -9,6 +9,7 @@
             name: '无名客',
             originDone: false,
             axes: { lijiao: 0, qingli: 0, kuangshen: 0 },
+            initialAxes: null,
             closest: null,
             farthest: null,
             chapter: 2,
@@ -30,6 +31,14 @@
             Object.keys(fresh).forEach(function (key) {
                 if (!(key in state)) state[key] = fresh[key];
             });
+            // 旧存档若缺少 initialAxes，以当前轴值作为基准（视为无变化）
+            if (!state.initialAxes) {
+                state.initialAxes = {
+                    lijiao: state.axes.lijiao || 0,
+                    qingli: state.axes.qingli || 0,
+                    kuangshen: state.axes.kuangshen || 0
+                };
+            }
             return state;
         } catch (error) {
             console.warn('书稿存档读取失败：', error);

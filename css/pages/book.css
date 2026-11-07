@@ -79,14 +79,33 @@
 .affinity-mini { margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid rgba(65, 52, 38, 0.2); color: #5d5244; font-size: 0.78rem; line-height: 1.8; }
 .affinity-mini strong { color: #762f27; }
 
+/* ── 通用坐标轴样式（棕色渐变，origin / journey / ending / PDF 共用）───────────────────────────── */
+.axis-bar { position: relative; height: 0.55rem; margin-top: 0.5rem; background: linear-gradient(90deg, rgba(123, 63, 38, 0.55), rgba(248, 240, 219, 0.9) 48%, rgba(123, 63, 38, 0.55)); border-radius: 0.25rem; }
+.axis-bar i { position: absolute; top: 50%; left: 50%; width: 1.05rem; height: 1.05rem; border: 2px solid #762f27; border-radius: 50%; background: #f7f0df; box-shadow: 0 0 0 3px rgba(247, 240, 223, 0.8); transform: translate(-50%, -50%); transition: left 0.6s ease; }
+.axis-labels { display: flex; justify-content: space-between; margin-top: 0.3rem; color: #762f27; font-size: 0.68rem; letter-spacing: 0.05em; }
+.axis-desc { display: flex; justify-content: space-between; margin-top: 0.4rem; color: #917e6b; font-size: 0.68rem; }
+
+/* ── 侧边栏：心境坐标轴 ─────────────────────────── */
+.axes-box { margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid rgba(65, 52, 38, 0.2); }
+.axes-box .overline { display: block; color: #896d54; font-size: 0.7rem; letter-spacing: 0.2em; margin-bottom: 0.9rem; }
+.axis-list { display: grid; gap: 0.9rem; }
+.axes-box .axis-row { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.72rem; color: #5d5244; }
+.axes-box .axis-row .axis-name { color: #3a3129; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; margin-bottom: 0.15rem; }
+.axes-box .axis-bar { position: relative; height: 0.55rem; background: linear-gradient(90deg, rgba(123, 63, 38, 0.55), rgba(248, 240, 219, 0.9) 48%, rgba(123, 63, 38, 0.55)); border-radius: 0.25rem; }
+.axes-box .axis-bar i { position: absolute; top: 50%; left: 50%; width: 1.05rem; height: 1.05rem; border: 2px solid #762f27; border-radius: 50%; background: #f7f0df; box-shadow: 0 0 0 3px rgba(247, 240, 223, 0.8); transform: translate(-50%, -50%); transition: left 0.6s ease; }
+.axes-box .axis-labels { color: #762f27; font-size: 0.62rem; margin-top: 0.2rem; }
+
+/* ── 结局页：心境变迁卡片 ─────────────────────────── */
+.evolution-card { padding-top: 1.6rem; border-top: 1px solid rgba(65, 52, 38, 0.2); }
+.eval-note { margin-top: 0.9rem; padding: 0.9rem 1.1rem; border-left: 2px solid #762f27; background: rgba(255, 250, 239, 0.7); color: #5c5042; font-size: 0.9rem; line-height: 1.9; }
+.eval-note strong { color: #762f27; }
+
 /* ── 开场气质测试 ─────────────────────────── */
 .origin-layout { max-width: 46rem; margin: 0 auto; padding: 2.5rem 0 3rem; }
 .axis-rows { display: grid; gap: 1.2rem; margin: 1.4rem 0; }
-.axis-row .axis-name { display: flex; justify-content: space-between; color: #3a3129; font-size: 0.92rem; letter-spacing: 0.08em; }
+.axis-row .axis-name { color: #3a3129; font-size: 0.92rem; letter-spacing: 0.08em; }
 .axis-row .axis-name span { color: #762f27; }
-.axis-bar { position: relative; height: 0.55rem; margin-top: 0.5rem; background: linear-gradient(90deg, rgba(123, 63, 38, 0.55), rgba(248, 240, 219, 0.9) 48%, rgba(123, 63, 38, 0.55)); }
-.axis-bar i { position: absolute; top: 50%; left: 50%; width: 1.05rem; height: 1.05rem; border: 2px solid #762f27; border-radius: 50%; background: #f7f0df; box-shadow: 0 0 0 3px rgba(247, 240, 223, 0.8); transform: translate(-50%, -50%); transition: left 0.6s ease; }
-.axis-desc { display: flex; justify-content: space-between; margin-top: 0.4rem; color: #917e6b; font-size: 0.68rem; }
+.axis-row .axis-bar { margin-top: 0.5rem; }
 .affinity-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.4rem 0; }
 .affinity-card { padding: 1.1rem 1.2rem; border: 1px solid rgba(104, 82, 63, 0.3); background: rgba(252, 248, 237, 0.85); }
 .affinity-card.far { border-color: rgba(90, 90, 110, 0.3); }

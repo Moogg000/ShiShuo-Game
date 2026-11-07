@@ -44,6 +44,7 @@
         renderManuscript();
         renderPressure();
         renderAffinity();
+        renderAxes();
     }
 
     function renderManuscript() {
@@ -79,6 +80,26 @@
         state.closest = match.closest.id;
         state.farthest = match.farthest.id;
         affinityMini.innerHTML = '知音 <strong>' + match.closest.name + '</strong> 与你同调。<br>诤友 <strong>' + match.farthest.name + '</strong> 与你道殊——路上多听他辩。';
+    }
+
+    // -3..3 映射到 8%..92%，与 origin.js 的三试坐标轴保持一致
+    function axisMarkerPercent(value) {
+        var clamped = Math.max(-3, Math.min(3, value));
+        return 50 + (clamped / 3) * 42;
+    }
+
+    function renderAxes() {
+        var axisList = document.getElementById('axis-list');
+        if (!axisList) return;
+        axisList.innerHTML = '';
+        data.axes.forEach(function (axis) {
+            var value = state.axes[axis.id] || 0;
+            axisList.appendChild(el('<div class="axis-row">'
+                + '<div class="axis-name">' + axis.name + '</div>'
+                + '<div class="axis-bar"><i style="left:' + axisMarkerPercent(value) + '%"></i></div>'
+                + '<div class="axis-labels"><span>' + axis.left.label + '</span><span>' + axis.right.label + '</span></div>'
+                + '</div>'));
+        });
     }
 
     function refreshHeader() {

@@ -90,6 +90,60 @@
             + '<p>' + farthestLine.trans + '（' + farthestLine.source + '）</p></div>'));
         body.appendChild(comments);
 
+        // ── 心境变迁：初始 vs 最终坐标轴 ──
+        var initialAxes = state.initialAxes || { lijiao: 0, qingli: 0, kuangshen: 0 };
+        var finalAxes = state.axes || { lijiao: 0, qingli: 0, kuangshen: 0 };
+        var axisEvalMap = {
+            lijiao: { pos: '你逐渐向自然靠拢，礼法不再是你心中的唯一准绳。', neg: '你越发看重名教与礼法，对人伦常理更加拘谨。' },
+            qingli: { pos: '你的情感变得更为外露，不再仅以理智克制自己。', neg: '你趋向冷静克制，情感被理性更深地掩埋。' },
+            kuangshen: { pos: '你变得更为锋芒毕露，不愿再默默忍耐。', neg: '你变得更加谨慎守默，不轻易对世事置喙。' }
+        };
+        var evalClauses = [];
+        var hasBigChange = false;
+        data.axes.forEach(function (axis) {
+            var delta = (finalAxes[axis.id] || 0) - (initialAxes[axis.id] || 0);
+            if (delta > 0) {
+                evalClauses.push(axisEvalMap[axis.id].pos);
+                if (delta >= 2) hasBigChange = true;
+            } else if (delta < 0) {
+                evalClauses.push(axisEvalMap[axis.id].neg);
+                if (-delta >= 2) hasBigChange = true;
+            }
+        });
+        var evalText = '';
+        if (evalClauses.length > 0) {
+            evalText = '编书期间，你的性格发生了变化：' + evalClauses.join(' ');
+            if (hasBigChange) {
+                evalText += ' 这位门客在编书途中心境多变，不太专一。';
+            }
+        }
+
+        // 坐标轴百分比映射（-3..3 → 8%..92%，与 origin.html 一致）
+        function axisPct(value) {
+            return 50 + (value / 3) * 42;
+        }
+        function renderAxisRow(axisId, axisName, leftLabel, rightLabel, initialVal, finalVal) {
+            return '<div class="axis-row">'
+                + '<div class="axis-name">' + axisName + '</div>'
+                + '<div class="axis-bar"><i style="left:' + axisPct(initialVal) + '%"></i></div>'
+                + '<div class="axis-labels"><span>' + leftLabel + '</span><span>' + rightLabel + '</span></div>'
+                + '<div class="axis-desc"><span>初始 ' + (initialVal >= 0 ? '+' : '') + initialVal + '</span><span>最终 ' + (finalVal >= 0 ? '+' : '') + finalVal + '</span></div>'
+                + '</div>';
+        }
+        var axisRowsHtml = '';
+        data.axes.forEach(function (axis) {
+            var initVal = initialAxes[axis.id] || 0;
+            var finVal = finalAxes[axis.id] || 0;
+            axisRowsHtml += renderAxisRow(axis.id, axis.name, axis.left.label, axis.right.label, initVal, finVal);
+        });
+
+        var evolutionCard = el('<div class="scene-card evolution-card" style="margin-top:1.6rem">'
+            + '<span class="place">心境变迁</span><h2>编者性格画像</h2>'
+            + '<div class="axis-rows">' + axisRowsHtml + '</div>'
+            + (evalText ? '<p class="scene-text eval-note">' + evalText + '</p>' : '<p class="scene-text">编书期间，你的性格底色保持了基本一致。</p>')
+            + '</div>');
+        body.appendChild(evolutionCard);
+
         // ── 书的命运 ──
         var fate = renderFate(data, state, hadDirect);
         body.appendChild(el('<div class="fate-card">'
@@ -277,6 +331,63 @@ function generatePrintHTML(params) {
     var totalRecorded = recorded.length;
     var totalBlanks = blanks.length;
 
+    var initialAxesPdf = state.initialAxes || { lijiao: 0, qingli: 0, kuangshen: 0 };
+    var finalAxesPdf = state.axes || { lijiao: 0, qingli: 0, kuangshen: 0 };
+    var axisEvalMapPdf = {
+        lijiao: { pos: '你逐渐向自然靠拢，礼法不再是你心中的唯一准绳。', neg: '你越发看重名教与礼法，对人伦常理更加拘谨。' },
+        qingli: { pos: '你的情感变得更为外露，不再仅以理智克制自己。', neg: '你趋向冷静克制，情感被理性更深地掩埋。' },
+        kuangshen: { pos: '你变得更为锋芒毕露，不愿再默默忍耐。', neg: '你变得更加谨慎守默，不轻易对世事置喙。' }
+    };
+    var evalClausesPdf = [];
+    data.axes.forEach(function (axis) {
+        var delta = (finalAxesPdf[axis.id] || 0) - (initialAxesPdf[axis.id] || 0);
+        if (delta > 0) {
+            evalClausesPdf.push(axisEvalMapPdf[axis.id].pos);
+        } else if (delta < 0) {
+            evalClausesPdf.push(axisEvalMapPdf[axis.id].neg);
+        }
+    });
+    var evalTextPdf = '';
+    if (evalClausesPdf.length > 0) {
+        evalTextPdf = '编书期间，你的性格发生了变化：' + evalClausesPdf.join(' ');
+        var hasBigChangePdf = data.axes.some(function (axis) {
+            var delta = Math.abs((finalAxesPdf[axis.id] || 0) - (initialAxesPdf[axis.id] || 0));
+            return delta >= 2;
+        });
+        if (hasBigChangePdf) {
+            evalTextPdf += ' 这位门客在编书途中心境多变，不太专一。';
+        }
+    }
+
+    // PDF 内坐标轴百分比映射（-3..3 → 8%..92%，与网页端一致）
+    function pdfAxisPct(value) {
+        return 50 + (value / 3) * 42;
+    }
+    function pdfRenderAxisRow(axisId, axisName, leftLabel, rightLabel, val) {
+        var pct = pdfAxisPct(val);
+        return '<div class="pdf-axis-row">'
+            + '<div class="pdf-axis-name">' + axisName + '</div>'
+            + '<div class="pdf-axis-bar"><i style="left:' + pct + '%"></i></div>'
+            + '<div class="pdf-axis-labels"><span>' + leftLabel + '</span><span>' + rightLabel + '</span></div>'
+            + '</div>';
+    }
+    // 心境变迁页：初始与最终轴的图形化 HTML
+    var pdfInitialAxisHtml = '';
+    var pdfFinalAxisHtml = '';
+    data.axes.forEach(function (axis) {
+        pdfInitialAxisHtml += pdfRenderAxisRow(axis.id, axis.name, axis.left.label, axis.right.label, initialAxesPdf[axis.id] || 0);
+        pdfFinalAxisHtml += pdfRenderAxisRow(axis.id, axis.name, axis.left.label, axis.right.label, finalAxesPdf[axis.id] || 0);
+    });
+    // 单事件页：该选择的轴向偏移图形化 HTML
+    function pdfEventAxisHtml(axes) {
+        var html = '';
+        data.axes.forEach(function (axis) {
+            var v = axes[axis.id] || 0;
+            html += pdfRenderAxisRow(axis.id, axis.name, axis.left.label, axis.right.label, v);
+        });
+        return html;
+    }
+
     // 统计各模式数量
     var modeCounts = {};
     recorded.forEach(function (r) { modeCounts[r.mode] = (modeCounts[r.mode] || 0) + 1; });
@@ -342,7 +453,9 @@ function generatePrintHTML(params) {
                     <div class="choice">
                         <p><strong>记录模式：</strong>${modeMarks[mode] || mode} ${gateName ? '· 入《' + gateName + '》' : ''}</p>
                         <p>${event.choiceText}</p>
-                        <p class="axis-indicator">轴向偏移：名教${formatAxis(axes.lijiao)} | 情理${formatAxis(axes.qingli)} | 狂慎${formatAxis(axes.kuangshen)}</p>
+                    </div>
+                    <div class="pdf-axis-group" style="margin:0.8em 0;">
+                        ${pdfEventAxisHtml(axes)}
                     </div>
 
                     <h5>4. 编者按语</h5>
@@ -361,6 +474,8 @@ function generatePrintHTML(params) {
         <div style="text-align: left; margin: 2em auto; max-width: 90%;">
             <h2>目录</h2>
             <ol>
+                <li>编者信息</li>
+                <li>编者心境变迁</li>
                 ${chaptersData.map(function (ch, i) {
                     return '<li>' + ch.title + ' <span class="toc-count">(' + ch.events.length + ' 则)</span></li>';
                 }).join('')}
@@ -380,17 +495,23 @@ function generatePrintHTML(params) {
         <meta charset="UTF-8">
         <title>世说新书 · ${playerName}编</title>
         <style>
+            @font-face {
+                font-family: 'ChillSerif';
+                src: url('assets/fonts/ChillJinshuSongRegular.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
             @page {
                 size: A4;
                 margin: 2cm;
                 @bottom-center {
-                    font-family: "Georgia", "Times New Roman", simsun, "Microsoft YaHei", serif;
+                    font-family: 'ChillSerif', serif;
                     font-size: 9pt;
                     content: "世说新书 · ${playerName}编 · " counter(page);
                 }
             }
             body {
-                font-family: "Georgia", "Times New Roman", simsun, "Microsoft YaHei", serif;
+                font-family: 'ChillSerif', serif;
                 font-size: 12pt;
                 line-height: 1.7;
                 color: #2c2c2c;
@@ -398,7 +519,7 @@ function generatePrintHTML(params) {
                 padding: 0 2cm;
             }
             h1, h2, h3, h4, h5 {
-                font-family: "Georgia", "Times New Roman", simsun, "Microsoft YaHei", serif;
+                font-family: 'ChillSerif', serif;
                 font-weight: 600;
                 color: #1a1a2e;
                 margin: 1.2em 0 0.6em 0;
@@ -431,6 +552,13 @@ function generatePrintHTML(params) {
             .editor-note-page { page-break-before: always; margin-top: 2em; }
             .last-page { text-align: center; margin: 5em 0; font-size: 14pt; color: #666; letter-spacing: 0.2em; }
             .stat-item { margin: 0.3em 0; text-indent: 0; }
+            /* PDF 坐标轴（黑白灰渐变，更细） */
+            .pdf-axis-row { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.8rem; font-size: 9.5pt; color: #333; }
+            .pdf-axis-name { color: #333333; font-size: 10pt; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 0.08rem; }
+            .pdf-axis-bar { position: relative; height: 0.35rem; background: #cccccc; border: 1px solid #999999; border-radius: 0.2rem; }
+            .pdf-axis-bar::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #666666 0%, #dddddd 48%, #666666 100%); border-radius: 0.18rem; }
+            .pdf-axis-bar i { position: absolute; top: 50%; left: 50%; width: 0.8rem; height: 0.8rem; border: 2px solid #555555; border-radius: 50%; background: #ffffff; box-shadow: 0 0 0 3px rgba(238, 238, 238, 0.9); transform: translate(-50%, -50%); }
+            .pdf-axis-labels { display: flex; justify-content: space-between; color: #555555; font-size: 8pt; letter-spacing: 0.05em; margin-top: 0.12rem; }
         </style>
     </head>
     <body>
@@ -457,6 +585,20 @@ function generatePrintHTML(params) {
 
             <h2>编者按</h2>
             <p>${noteText}</p>
+        </div>
+
+        <!-- ==== 心境变迁 ==== -->
+        <div class="chapter editor-note-page">
+            <h2>编者心境变迁</h2>
+            <div class="section">
+                <p class="stat-item"><strong>三试定底色时：</strong>名教←→自然 ${initialAxesPdf.lijiao >= 0 ? '+' : ''}${initialAxesPdf.lijiao}，情↔理 ${initialAxesPdf.qingli >= 0 ? '+' : ''}${initialAxesPdf.qingli}，狂↔慎 ${initialAxesPdf.kuangshen >= 0 ? '+' : ''}${initialAxesPdf.kuangshen}。</p>
+                <div class="pdf-axis-label" style="margin-top:0.6em; font-size:0.9em; color:#555;">初始底色坐标</div>
+                <div class="pdf-axis-group" style="margin:0.5em 0 1.5em 0;">${pdfInitialAxisHtml}</div>
+                <p class="stat-item"><strong>九事编毕时：</strong>名教←→自然 ${finalAxesPdf.lijiao >= 0 ? '+' : ''}${finalAxesPdf.lijiao}，情↔理 ${finalAxesPdf.qingli >= 0 ? '+' : ''}${finalAxesPdf.qingli}，狂↔慎 ${finalAxesPdf.kuangshen >= 0 ? '+' : ''}${finalAxesPdf.kuangshen}。</p>
+                <div class="pdf-axis-label" style="margin-top:0.6em; font-size:0.9em; color:#555;">最终底色坐标</div>
+                <div class="pdf-axis-group" style="margin:0.5em 0 1.5em 0;">${pdfFinalAxisHtml}</div>
+                <p class="stat-item">${evalTextPdf || '编书期间，你的性格底色保持了基本一致。'}</p>
+            </div>
         </div>
 
         <!-- ==== 章节正文 ==== -->

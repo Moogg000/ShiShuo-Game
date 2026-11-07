@@ -40,7 +40,8 @@
         renderBeat(data.origin.beats[index]);
         progress.textContent = '问对 ' + String(index + 1) + ' / ' + data.origin.beats.length;
         beatsActions.innerHTML = '';
-        var button = el('<button class="continue-button">' + (index === data.origin.beats.length - 1 ? '领受三试' : '继续') + '<span>→</span></button>');
+        var trialCount = chineseNumerals[data.origin.questions.length - 1];
+        var button = el('<button class="continue-button">' + (index === data.origin.beats.length - 1 ? '领受' + trialCount + '试' : '继续') + '<span>→</span></button>');
         button.addEventListener('click', function () { showBeats(data, index + 1); });
         beatsActions.appendChild(button);
         beatsActions.hidden = false;
@@ -49,9 +50,10 @@
     function showQuestion(data, index) {
         var questions = data.origin.questions;
         var question = questions[index];
-        progress.textContent = '三试之问 ' + chineseNumerals[index] + ' / ' + chineseNumerals[questions.length - 1];
+        var trialCount = chineseNumerals[questions.length - 1];
+        progress.textContent = trialCount + '试之问 ' + chineseNumerals[index] + ' / ' + trialCount;
         quizCard.innerHTML =
-            '<span class="place">临川王的三试 · ' + (index + 1) + '</span>'
+            '<span class="place">临川王的' + trialCount + '试 · ' + (index + 1) + '</span>'
             + '<h2>换作是你</h2>'
             + '<p class="scene-text">' + question.prompt + '</p>'
             + '<div class="choice-list" style="margin-top:1.4rem">'
@@ -77,9 +79,9 @@
     }
 
     function axisMarkerPercent(value) {
-        // -6..6 映射到 8%..92%
-        var clamped = Math.max(-6, Math.min(6, value));
-        return 50 + (clamped / 6) * 42;
+        // -3..3 映射到 8%..92，与 journey/ending/PDF 保持完全一致
+        var clamped = Math.max(-3, Math.min(3, value));
+        return 50 + (clamped / 3) * 42;
     }
 
     function showResult(data) {
@@ -95,8 +97,9 @@
         data.axes.forEach(function (axis) {
             var value = pickedAxes[axis.id] || 0;
             axisRows.appendChild(el('<div class="axis-row">'
-                + '<div class="axis-name"><span>' + axis.left.label + '</span>' + axis.name + '<span>' + axis.right.label + '</span></div>'
+                + '<div class="axis-name">' + axis.name + '</div>'
                 + '<div class="axis-bar"><i style="left:' + axisMarkerPercent(value) + '%"></i></div>'
+                + '<div class="axis-labels"><span>' + axis.left.label + '</span><span>' + axis.right.label + '</span></div>'
                 + '<div class="axis-desc"><span>' + axis.left.desc + '</span><span>' + axis.right.desc + '</span></div>'
                 + '</div>'));
         });
@@ -117,6 +120,12 @@
             var state = window.Book.freshState();
             state.name = name;
             state.axes = pickedAxes;
+            // 保存三试结束时的初始轴快照，供结局页与 PDF 对比
+            state.initialAxes = {
+                lijiao: Math.max(-3, Math.min(3, pickedAxes.lijiao || 0)),
+                qingli: Math.max(-3, Math.min(3, pickedAxes.qingli || 0)),
+                kuangshen: Math.max(-3, Math.min(3, pickedAxes.kuangshen || 0))
+            };
             state.closest = match.closest.id;
             state.farthest = match.farthest.id;
             state.originDone = true;
